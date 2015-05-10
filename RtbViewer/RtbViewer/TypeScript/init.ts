@@ -8,7 +8,7 @@
 			if (request.readyState === XMLHttpRequest.DONE) {
 				if (request.status === 200) {
 					var response = request.responseText;
-					var board = <IBoard>JSON.parse(response);
+					var board = JSON.parse(response);
 
 					var viewport = document.getElementById("viewport");
 

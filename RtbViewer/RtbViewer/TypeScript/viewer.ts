@@ -8,10 +8,16 @@ class Viewer {
 	private _renderer: IRenderer;
 	private _rendererCollection: IDictionary<IRenderer>;
 
+	private _position: IPosition;
+
 	constructor(board: IBoard, viewport: HTMLElement) {
 		this._board = board;
 		this._viewport = viewport;
 		this._rendererCollection = {};
+
+		//deep copy по-быстрому
+		var jsonPosition = JSON.stringify(board.startPosition);
+		this._position = JSON.parse(jsonPosition);
 	}
 
 	public render(renderType: string): void {
@@ -21,7 +27,9 @@ class Viewer {
 		}
 
 		if (newRenderer !== this._renderer) {
-			this._renderer.clear();
+			if (this._renderer) {
+				this._renderer.clear(this._viewport);
+			}
 			this._renderer = newRenderer;
 			this._renderer.draw(this._board, this._viewport);
 		}

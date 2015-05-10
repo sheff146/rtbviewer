@@ -1,10 +1,13 @@
 ﻿class CanvasRenderer implements IRenderer {
+	private _widgetRenderers: IDictionary<IWidgetRenderer>;
 
-	clear(): void { }
+	public clear(viewport: HTMLElement): void {
+		viewport.innerHTML = "";
+	}
 
-	draw(board: IBoard, viewport: HTMLElement): void { }
+	public draw(board: IBoard, viewport: HTMLElement): void { }
 
-	getType(): string {
+	public getType(): string {
 		return "canvas";
 	}
 } 

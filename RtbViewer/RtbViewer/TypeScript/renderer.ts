@@ -1,5 +1,5 @@
 ﻿interface IRenderer {
 	getType(): string;
-	clear(): void;
+	clear(viewport: HTMLElement): void;
 	draw(board: IBoard, viewport: HTMLElement): void;
 } 

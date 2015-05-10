@@ -1,9 +1,11 @@
 ﻿interface IBoard {
 	widgets: IWidget[];
 	startPosition: IPosition;
+	idStr: string;
 }
 
 interface IWidget {
+	width?: number;
 	text?: string;
 	x: number;
 	y: number;
