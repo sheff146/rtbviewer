@@ -26,7 +26,11 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="TypeScript\app.ts" />
+    <TypeScriptCompile Include="TypeScript\board.ts" />
+    <TypeScriptCompile Include="TypeScript\canvasrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\domrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\init.ts" />
+    <TypeScriptCompile Include="TypeScript\renderer.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
