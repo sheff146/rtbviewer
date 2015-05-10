@@ -1,22 +1,21 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>TypeScript HTML App</title>
+	<title>Realtimeboard viewer</title>
 	<link rel="stylesheet" href="style.css" type="text/css" />
-	<script src="rtbviewer.js"></script>
 </head>
 <body>
 	<div id="viewer">
-		<div class="viewport" id="html-viewport"></div>
+		<div class="viewport" id="dom-viewport"></div>
 		<div class="viewport" id="canvas-viewport" style="display: none"></div>
 		<div class="toolbox">
 			<button class="button zoom-in" id="zoom-in">+</button>
 			<button class="button zoom-out" id="zoom-out">-</button>
-			<input type="radio" id="html-renderer-switch" name="renderer" class="switch" value="html" checked /><label for="html-renderer-switch">HTML renderer</label>
+			<input type="radio" id="dom-renderer-switch" name="renderer" class="switch" value="dom" checked /><label for="dom-renderer-switch">HTML renderer</label>
 			<input type="radio" id="canvas-renderer-switch" name="renderer" class="switch" value="canvas" /><label for="canvas-renderer-switch">Canvas renderer</label>
 		</div>
 	</div>
+	<script src="rtbviewer.js"></script>
 </body>
 </html>
