@@ -1,5 +1,5 @@
 ﻿class CanvasRenderer implements IRenderer {
-	clear(): void {}
+	clear(): void { }
 
-	draw(board: IBoard): void {}
+	draw(board: IBoard, viewport: HTMLElement): void { }
 } 

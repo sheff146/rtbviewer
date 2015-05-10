@@ -27,16 +27,22 @@
 		var clickHandler = (ev: MouseEvent) => {
 			var radio = <HTMLInputElement>ev.target;
 			var renderType = radio.value;
+			var viewport = document.getElementById("viewport");
+
 			if (renderers.hasOwnProperty(renderType)) {
 				var newRenderer = (<any>renderers)[renderType];
 				if (newRenderer !== currentRenderer) {
 					currentRenderer.clear();
 					currentRenderer = newRenderer;
-					currentRenderer.draw(board);
+					currentRenderer.draw(board, viewport);
 				}
 			}
 		};
+
 		radioDom.addEventListener("click", clickHandler);
 		radioCanvas.addEventListener("click", clickHandler);
+
+		//TODO: обработчики на масштабирование
+		//TODO: обработчики на перетаскивание
 	});
 })();
