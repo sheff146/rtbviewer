@@ -1,5 +1,7 @@
 ﻿body {
 	font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 div {
@@ -26,7 +28,7 @@ div {
 	}
 
 .toolbox .button {
-	width: 80%;
-	height: 80%;
+	width: 30px;
+	height: 30px;
 	display: inline-block;
 }
