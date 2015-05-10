@@ -1,0 +1,32 @@
+﻿body {
+	font-family: 'Segoe UI', sans-serif;
+}
+
+div {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#viewer {
+	width: 100%;
+	height: 400px;
+}
+
+.viewport {
+	width: 100%;
+	height: 90%;
+}
+
+	.viewport .toolbox {
+		width: 100%;
+		height: 10%;
+	}
+
+.toolbox .button {
+	width: 80%;
+	height: 80%;
+	display: inline-block;
+}
