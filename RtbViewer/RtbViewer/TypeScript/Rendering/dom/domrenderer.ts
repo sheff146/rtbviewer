@@ -27,16 +27,8 @@ class DomRenderer implements IRenderer {
 
 	public draw(board: IBoard, viewport: HTMLElement): void {
 		var layoutBoard = this.createLayout(board, viewport);
-		var rMin = board.startPosition.a;
-		var rMax = board.startPosition.b;
-
-		var commonPart = viewport.clientWidth / 2 * (rMax.x - rMin.x) / viewport.clientHeight - (rMax.x - rMin.x) / 2;
-
-		var xMinBoard = rMin.x - commonPart;
-		var xMaxBoard = rMax.x + commonPart;
-
-		var viewBoardCoords: IPosition = { a: { x: xMinBoard, y: rMin.y }, b: { x: xMaxBoard, y: rMax.y } }
 		var viewportSize: ISize = { width: viewport.clientWidth, height: viewport.clientHeight };
+		var viewBoardCoords = RenderHelper.countViewBoardCoords(board.startPosition, viewportSize);
 
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
@@ -53,7 +45,7 @@ class DomRenderer implements IRenderer {
 
 		layout.id = board.idStr;
 		layout.style.position = "absolute";
-		layout.style.backgroundColor = "gray";
+		layout.style.backgroundColor = "#DDDDDD";
 		layout.style.left = 0 + "px";
 		layout.style.top = 0 + "px";
 		layout.style.width = "100%";

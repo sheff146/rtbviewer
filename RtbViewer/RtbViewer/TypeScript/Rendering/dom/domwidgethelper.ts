@@ -13,10 +13,18 @@
 
 		element.style.left = widgetScreenCoords.x + "px";
 		element.style.top = widgetScreenCoords.y + "px";
-		element.style.transform = RenderHelper.createTransformString(widget);
+		element.style.transform = DomWidgetHelper.createTransformString(widget);
 		element.style.position = "absolute";
 
 		element.id = widget.idStr;
+	}
+
+	private static createTransformString(widget: IWidget): string {
+		var scale = widget.scale || 1;
+		var angle = widget.angle || 0;
+
+		var transformBlank = "translate(-50%,-50%) scale({0},{0}) rotate({1}deg)";
+		return StringFormatter.format(transformBlank, scale, angle);
 	}
 
 	public static createImage(imgSrc: string, viewBoardCoords: IPosition, viewportSize: ISize): HTMLElement {

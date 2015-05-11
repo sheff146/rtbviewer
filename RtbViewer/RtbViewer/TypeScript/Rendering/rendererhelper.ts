@@ -4,6 +4,22 @@ interface ISize {
 }
 
 class RenderHelper {
+	public static countViewBoardCoords(boardStartPosition: IPosition, viewportSize: ISize): IPosition {
+		var rMin = boardStartPosition.a;
+		var rMax = boardStartPosition.b;
+		var vpWidth = viewportSize.width;
+		var vpHeight = viewportSize.height;
+
+		var ky = (rMax.y - rMin.y) / vpHeight;
+		var commonPart = vpWidth / 2 * ky - (rMax.x - rMin.x) / 2;
+
+		var xMinBoard = rMin.x - commonPart;
+		var xMaxBoard = rMax.x + commonPart;
+
+		var viewBoardCoords: IPosition = { a: { x: xMinBoard, y: rMin.y }, b: { x: xMaxBoard, y: rMax.y } }
+		return viewBoardCoords;
+	}
+
 	public static countScreenCoords(realCoords: IPoint, viewBoardCoords: IPosition, viewportSize: ISize): IPoint {
 		var vpMin = viewBoardCoords.a;
 		var vpMax = viewBoardCoords.b;
@@ -28,14 +44,6 @@ class RenderHelper {
 			width: realSize.width / kx,
 			height: realSize.height / ky
 		};
-	}
-
-	public static createTransformString(widget: IWidget): string {
-		var scale = widget.scale || 1;
-		var angle = widget.angle || 0;
-
-		var transformBlank = "translate(-50%,-50%) scale({0},{0}) rotate({1}deg)";
-		return StringFormatter.format(transformBlank, scale, angle);
 	}
 
 	public static hexColorFromNumber(bc: number): string {
