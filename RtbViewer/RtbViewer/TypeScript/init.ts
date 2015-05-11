@@ -67,6 +67,29 @@
 		// ReSharper disable once Html.EventNotResolved
 		viewport.addEventListener("wheel", zoomHandler);
 
-		//TODO: обработчики на перетаскивание
+		var mousePosition: IPoint = { x: 0, y: 0 };
+		var isPressed = false;
+
+		viewport.addEventListener("mousedown", (ev: MouseEvent) => {
+			isPressed = true;
+			mousePosition.x = ev.x;
+			mousePosition.y = ev.y;
+		});
+
+		viewport.addEventListener("mouseup", (ev: MouseEvent) => {
+			isPressed = false;
+		});
+
+		viewport.addEventListener("mousemove", (ev: MouseEvent) => {
+			if (isPressed) {
+				var deltaX = ev.x - mousePosition.x;
+				var deltaY = ev.y - mousePosition.y;
+
+				mousePosition.x = ev.x;
+				mousePosition.y = ev.y;
+
+				viewer.move(deltaX, deltaY);
+			}
+		});
 	});
 })();

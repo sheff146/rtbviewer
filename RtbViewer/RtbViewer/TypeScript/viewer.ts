@@ -45,7 +45,14 @@ class Viewer {
 
 	public zoom(scaleModifier: number, zoomPoint: IPoint) {
 		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
-		this._viewRect = RenderHelper.countNewViewRect(scaleModifier, zoomPoint, this._viewRect,viewportSize);
+		this._viewRect = RenderHelper.countNewZoomRect(scaleModifier, zoomPoint, this._viewRect, viewportSize);
+		this._renderer.clear(this._viewport);
+		this._renderer.draw(this._board, this._viewport, this._viewRect);
+	}
+
+	public move(deltaX: number, deltaY: number) {
+		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
+		this._viewRect = RenderHelper.countNewDragRect(deltaX, deltaY, this._viewRect, viewportSize);
 		this._renderer.clear(this._viewport);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}

@@ -49,7 +49,30 @@ class RenderHelper {
 		};
 	}
 
-	public static countNewViewRect(scaleModifier: number, zoomScreenPoint: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IRect {
+	public static countNewDragRect(deltaXScreen: number, deltaYScreen: number, viewBoardCoords: IRect, viewportSize: ISize): IRect {
+		var realDelta = RenderHelper.countRealDelta({ x: deltaXScreen, y: deltaYScreen }, viewBoardCoords, viewportSize);
+		return {
+			a: { x: viewBoardCoords.a.x - realDelta.x, y: viewBoardCoords.a.y - realDelta.y },
+			b: { x: viewBoardCoords.b.x - realDelta.x, y: viewBoardCoords.b.y - realDelta.y }
+		};
+	}
+
+	private static countRealDelta(deltaScreen: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IPoint {
+		var vpMin = viewBoardCoords.a;
+		var vpMax = viewBoardCoords.b;
+		var vpWidth = viewportSize.width;
+		var vpHeight = viewportSize.height;
+
+		var kx = (vpMax.x - vpMin.x) / vpWidth;
+		var ky = (vpMax.y - vpMin.y) / vpHeight;
+
+		return {
+			x: deltaScreen.x * kx,
+			y: deltaScreen.y * ky
+		};
+	}
+
+	public static countNewZoomRect(scaleModifier: number, zoomScreenPoint: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IRect {
 		var zoomRealPoint = RenderHelper.countRealCoordinates(zoomScreenPoint, viewBoardCoords, viewportSize);
 		var deltaScale = 1 + Math.abs(scaleModifier);
 		if (scaleModifier < 0) {
