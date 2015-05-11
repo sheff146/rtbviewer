@@ -8,16 +8,24 @@ class Viewer {
 	private _renderer: IRenderer;
 	private _rendererCollection: IDictionary<IRenderer>;
 
-	private _position: IRect;
+	private _viewRect: IRect;
 
 	constructor(board: IBoard, viewport: HTMLElement) {
 		this._board = board;
 		this._viewport = viewport;
 		this._rendererCollection = {};
-
+		
 		//deep copy по-быстрому
 		var jsonPosition = JSON.stringify(board.startPosition);
-		this._position = JSON.parse(jsonPosition);
+		var viewRect = JSON.parse(jsonPosition);
+
+		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
+		this._viewRect = RenderHelper.countViewBoardCoords(viewRect, viewportSize);
+	}
+
+	public addRenderer(renderer: IRenderer): void {
+		var renderType = renderer.getType();
+		this._rendererCollection[renderType] = renderer;
 	}
 
 	public render(renderType: string): void {
@@ -31,12 +39,14 @@ class Viewer {
 				this._renderer.clear(this._viewport);
 			}
 			this._renderer = newRenderer;
-			this._renderer.draw(this._board, this._viewport);
+			this._renderer.draw(this._board, this._viewport, this._viewRect);
 		}
 	}
 
-	public addRenderer(renderer: IRenderer): void {
-		var renderType = renderer.getType();
-		this._rendererCollection[renderType] = renderer;
+	public zoom(scaleModifier: number, zoomPoint: IPoint) {
+		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
+		this._viewRect = RenderHelper.countNewViewRect(scaleModifier, zoomPoint, this._viewRect,viewportSize);
+		this._renderer.clear(this._viewport);
+		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 }

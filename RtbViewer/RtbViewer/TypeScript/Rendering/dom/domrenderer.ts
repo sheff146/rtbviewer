@@ -25,15 +25,15 @@ class DomRenderer implements IRenderer {
 		return "dom";
 	}
 
-	public draw(board: IBoard, viewport: HTMLElement): void {
+	public draw(board: IBoard, viewport: HTMLElement, viewRect: IRect): void {
 		var layoutBoard = this.createLayout(board, viewport);
 		var viewportSize: ISize = { width: viewport.clientWidth, height: viewport.clientHeight };
-		var viewBoardCoords = RenderHelper.countViewBoardCoords(board.startPosition, viewportSize);
+		//var viewBoardCoords = RenderHelper.countViewBoardCoords(viewRect, viewportSize);
 
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
 			if (renderer) {
-				renderer.render(widget, layoutBoard, viewBoardCoords, viewportSize);
+				renderer.render(widget, layoutBoard, viewRect/*viewBoardCoords*/, viewportSize);
 			}
 		});
 

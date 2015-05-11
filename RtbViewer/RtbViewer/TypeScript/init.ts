@@ -2,6 +2,8 @@
 	document.addEventListener("DOMContentLoaded", () => {
 		var viewer: Viewer;
 
+		var viewport = document.getElementById("viewport");
+
 		var request = new XMLHttpRequest();
 		request.open("GET", "//api.realtimeboard.com/objects/74254402", true);
 		request.onreadystatechange = () => {
@@ -10,7 +12,7 @@
 					var response = request.responseText;
 					var board = JSON.parse(response);
 
-					var viewport = document.getElementById("viewport");
+
 
 					viewer = new Viewer(board, viewport);
 					viewer.addRenderer(new DomRenderer());
@@ -22,20 +24,49 @@
 			}
 		};
 		request.send();
-		
+
 		var radioDom = document.getElementById("dom-renderer-switch");
 		var radioCanvas = document.getElementById("canvas-renderer-switch");
 
-		var clickHandler = (ev: MouseEvent) => {
+		var switchHandler = (ev: MouseEvent) => {
 			var radio = <HTMLInputElement>ev.target;
 			var renderType = radio.value;
 			viewer.render(renderType);
 		};
 
-		radioDom.addEventListener("click", clickHandler);
-		radioCanvas.addEventListener("click", clickHandler);
+		radioDom.addEventListener("click", switchHandler);
+		radioCanvas.addEventListener("click", switchHandler);
 
-		//TODO: обработчики на масштабирование
+		var btnZoomIn = document.getElementById("zoom-in");
+		var btnZoomOut = document.getElementById("zoom-out");
+
+		var zoomHandler = (ev: MouseWheelEvent) => {
+			var curTarget = <HTMLElement>ev.currentTarget;
+			var zoomMultiplier = 0;
+			var zoomPoint = { x: viewport.clientWidth / 2, y: viewport.clientHeight / 2 }
+
+			switch (curTarget.id) {
+				case "zoom-in":
+					zoomMultiplier = -0.1;
+					break;
+				case "zoom-out":
+					zoomMultiplier = 0.1;
+					break;
+				case "viewport":
+					zoomMultiplier = (<any>ev).deltaY > 0 ? 0.1 : -0.1;
+					zoomPoint.x = ev.x;
+					zoomPoint.y = ev.y;
+					break;
+			}
+
+			viewer.zoom(zoomMultiplier, zoomPoint);
+		};
+
+		btnZoomIn.addEventListener("click", zoomHandler);
+		btnZoomOut.addEventListener("click", zoomHandler);
+		// ReSharper disable once Html.EventNotResolved
+		viewport.addEventListener("wheel", zoomHandler);
+
 		//TODO: обработчики на перетаскивание
 	});
 })();
