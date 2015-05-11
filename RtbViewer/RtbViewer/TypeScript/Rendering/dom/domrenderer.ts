@@ -9,6 +9,8 @@ class DomRenderer implements IRenderer {
 	constructor() {
 		//TODO: фабрику вместо этой хрени
 		this.addWidgetRenderer(new StickerRenderer());
+		this.addWidgetRenderer(new ImageRenderer());
+		this.addWidgetRenderer(new TextRenderer());
 	}
 
 	public addWidgetRenderer(widgetRenderer: IWidgetRenderer) {

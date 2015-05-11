@@ -1,52 +1,28 @@
-class StickerRenderer implements IWidgetRenderer {
-	private static backgroundUrl = "assets/sticker.png";
-
+п»їclass StickerRenderer implements IWidgetRenderer {
 	public getWidgetType(): number {
 		return 5;
 	}
 
 	public render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IPosition, viewportSize: ISize): void {
-		var sticker = document.createElement("div");
-		var stickerBackground = this.createBackground(viewBoardCoords, viewportSize);
-		var text = this.createText();
+		var sticker = DomWidgetHelper.createDiv(widget, viewBoardCoords, viewportSize);
+		var bgImage = DomWidgetHelper.createImage("assets/sticker.png", viewBoardCoords, viewportSize);
+		var text = this.createSpan(widget.text);
 
-		var widgetRealCoords = { x: widget.x, y: widget.y };
-		var widgetScreenCoords = DomRenderHelper.countScreenCoords(widgetRealCoords, viewBoardCoords, viewportSize);
-
-		sticker.style.left = widgetScreenCoords.x + "px";
-		sticker.style.top = widgetScreenCoords.y + "px";
-
-		sticker.style.transform = DomRenderHelper.createTransformString(widget);
-
-		sticker.id = widget.idStr;
-		sticker.style.position = "absolute";
-
-		sticker.appendChild(stickerBackground);
+		sticker.appendChild(bgImage);
 		sticker.appendChild(text);
 
 		layoutBoard.appendChild(sticker);
 	}
 
-	private createBackground(viewBoardCoords: IPosition, viewportSize: ISize): HTMLElement {
-		var stickerBackground = document.createElement("img");
-		var vpMin = viewBoardCoords.a;
-		var vpMax = viewBoardCoords.b;
-		var kx = (vpMax.x - vpMin.x) / viewportSize.width;
-		var ky = (vpMax.y - vpMin.y) / viewportSize.height;
-		//TODO: узнать, как определять размер виджета
-		stickerBackground.width = 446 / kx;
-		stickerBackground.height = 470 / ky;
-		stickerBackground.src = StickerRenderer.backgroundUrl;
+	private createSpan(text: string): HTMLElement {
+		var textElement = document.createElement("span");
 
-		return stickerBackground;
-	}
+		
+		textElement.style.position = "absolute";
+		textElement.innerText = text;
+		//TODO: РЅР°СЃС‚СЂРѕРёС‚СЊ СЂР°Р·РјРµСЂ Рё СЃС‚РёР»СЊ С‚РµРєСЃС‚Р°
+		textElement.style.fontSize = "1px";
 
-	private createText(): HTMLElement {
-		var text = document.createElement("span");
-
-		//TODO: настроить стиль текста
-		text.style.position = "absolute";
-
-		return text;
+		return textElement;
 	}
 }
