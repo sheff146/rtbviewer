@@ -1,13 +1,11 @@
 ﻿class DomWidgetHelper {
-	public static createDiv(widget: IWidget, viewBoardCoords: IPosition, viewportSize: ISize): HTMLElement {
+	public static createDiv(widget: IWidget, viewBoardCoords: IRect, viewportSize: ISize): HTMLElement {
 		var element = document.createElement("div");
-
 		DomWidgetHelper.setWidgetLayout(element, widget, viewBoardCoords, viewportSize);
-
 		return element;
 	}
 
-	public static setWidgetLayout(element: HTMLElement, widget: IWidget, viewBoardCoords: IPosition, viewportSize: ISize):void {
+	public static setWidgetLayout(element: HTMLElement, widget: IWidget, viewBoardCoords: IRect, viewportSize: ISize): void {
 		var widgetRealCoords = { x: widget.x, y: widget.y };
 		var widgetScreenCoords = RenderHelper.countScreenCoords(widgetRealCoords, viewBoardCoords, viewportSize);
 
@@ -20,19 +18,18 @@
 	}
 
 	private static createTransformString(widget: IWidget): string {
-		var scale = widget.scale || 1;
 		var angle = widget.angle || 0;
 
-		var transformBlank = "translate(-50%,-50%) scale({0},{0}) rotate({1}deg)";
-		return StringFormatter.format(transformBlank, scale, angle);
+		var transformBlank = "translate(-50%,-50%) rotate({0}deg)";
+		return StringFormatter.format(transformBlank, angle);
 	}
 
-	public static createImage(imgSrc: string, viewBoardCoords: IPosition, viewportSize: ISize): HTMLElement {
+	public static createImage(imgSrc: string, viewBoardCoords: IRect, viewportSize: ISize, scale: number): HTMLElement {
 		var image = document.createElement("img");
-		
+
 		image.onload = () => {
 			var realSize = { width: image.width, height: image.height };
-			var screenSize = RenderHelper.countScreenSize(realSize, viewBoardCoords, viewportSize);
+			var screenSize = RenderHelper.countScreenSize(realSize, viewBoardCoords, viewportSize, scale);
 
 			image.width = screenSize.width;
 			image.height = screenSize.height;

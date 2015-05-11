@@ -8,7 +8,7 @@ class Viewer {
 	private _renderer: IRenderer;
 	private _rendererCollection: IDictionary<IRenderer>;
 
-	private _position: IPosition;
+	private _position: IRect;
 
 	constructor(board: IBoard, viewport: HTMLElement) {
 		this._board = board;

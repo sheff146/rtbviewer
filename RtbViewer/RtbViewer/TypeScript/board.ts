@@ -1,6 +1,6 @@
 ﻿interface IBoard {
 	widgets: IWidget[];
-	startPosition: IPosition;
+	startPosition: IRect;
 	idStr: string;
 }
 
@@ -22,7 +22,7 @@ interface IStyle {
 	bc?: number;
 }
 
-interface IPosition {
+interface IRect {
 	a: IPoint;
 	b: IPoint;
 }

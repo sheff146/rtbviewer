@@ -3,11 +3,11 @@
 		return 4;
 	}
 
-	public render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IPosition, viewportSize: ISize): void {
+	public render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IRect, viewportSize: ISize): void {
 		var element = DomWidgetHelper.createDiv(widget, viewBoardCoords, viewportSize);
 
 		var realSize = { width: widget.width, height: 0 };
-		var screenSize = RenderHelper.countScreenSize(realSize, viewBoardCoords, viewportSize);
+		var screenSize = RenderHelper.countScreenSize(realSize, viewBoardCoords, viewportSize, widget.scale);
 		element.style.width = screenSize.width + "px";
 		element.innerHTML = widget.text;
 		this.setUpTextStyle(element);

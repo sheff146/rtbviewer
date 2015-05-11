@@ -1,6 +1,6 @@
 ﻿interface IWidgetRenderer {
 	getWidgetType(): number;
-	render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IPosition, viewportSize: ISize): void;
+	render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IRect, viewportSize: ISize): void;
 }
 
 class DomRenderer implements IRenderer {

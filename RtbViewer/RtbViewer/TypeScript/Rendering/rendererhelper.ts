@@ -4,28 +4,29 @@ interface ISize {
 }
 
 class RenderHelper {
-	public static countViewBoardCoords(boardStartPosition: IPosition, viewportSize: ISize): IPosition {
-		var rMin = boardStartPosition.a;
-		var rMax = boardStartPosition.b;
+	public static countViewBoardCoords(startPosotion: IRect, viewportSize: ISize): IRect {
+		var rMin = startPosotion.a;
+		var rMax = startPosotion.b;
 		var vpWidth = viewportSize.width;
 		var vpHeight = viewportSize.height;
 
 		var ky = (rMax.y - rMin.y) / vpHeight;
-		var commonPart = vpWidth / 2 * ky - (rMax.x - rMin.x) / 2;
+		var freeSpace = (vpWidth * ky - (rMax.x - rMin.x)) / 2;
 
-		var xMinBoard = rMin.x - commonPart;
-		var xMaxBoard = rMax.x + commonPart;
+		var xMinBoard = rMin.x - freeSpace;
+		var xMaxBoard = rMax.x + freeSpace;
 
-		var viewBoardCoords: IPosition = { a: { x: xMinBoard, y: rMin.y }, b: { x: xMaxBoard, y: rMax.y } }
-		return viewBoardCoords;
+		return { a: { x: xMinBoard, y: rMin.y }, b: { x: xMaxBoard, y: rMax.y } }
 	}
 
-	public static countScreenCoords(realCoords: IPoint, viewBoardCoords: IPosition, viewportSize: ISize): IPoint {
+	public static countScreenCoords(realCoords: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IPoint {
 		var vpMin = viewBoardCoords.a;
 		var vpMax = viewBoardCoords.b;
+		var vpWidth = viewportSize.width;
+		var vpHeight = viewportSize.height;
 
-		var kx = (vpMax.x - vpMin.x) / viewportSize.width;
-		var ky = (vpMax.y - vpMin.y) / viewportSize.height;
+		var kx = (vpMax.x - vpMin.x) / vpWidth;
+		var ky = (vpMax.y - vpMin.y) / vpHeight;
 
 		return {
 			x: (realCoords.x - vpMin.x) / kx,
@@ -33,16 +34,18 @@ class RenderHelper {
 		};
 	}
 
-	public static countScreenSize(realSize: ISize, viewBoardCoords: IPosition, viewportSize: ISize): ISize {
+	public static countScreenSize(realSize: ISize, viewBoardCoords: IRect, viewportSize: ISize, scale: number): ISize {
 		var vpMin = viewBoardCoords.a;
 		var vpMax = viewBoardCoords.b;
+		var vpWidth = viewportSize.width;
+		var vpHeight = viewportSize.height;
 
-		var kx = (vpMax.x - vpMin.x) / viewportSize.width;
-		var ky = (vpMax.y - vpMin.y) / viewportSize.height;
+		var kx = (vpMax.x - vpMin.x) / vpWidth;
+		var ky = (vpMax.y - vpMin.y) / vpHeight;
 
 		return {
-			width: realSize.width / kx,
-			height: realSize.height / ky
+			width: realSize.width / kx * scale,
+			height: realSize.height / ky * scale
 		};
 	}
 
