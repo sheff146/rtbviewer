@@ -19,7 +19,7 @@ class RenderHelper {
 		return { a: { x: xMinBoard, y: rMin.y }, b: { x: xMaxBoard, y: rMax.y } }
 	}
 
-	public static countScreenCoords(realCoords: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IPoint {
+	private static countMappingScale(viewBoardCoords: IRect, viewportSize: ISize): { kx: number; ky: number } {
 		var vpMin = viewBoardCoords.a;
 		var vpMax = viewBoardCoords.b;
 		var vpWidth = viewportSize.width;
@@ -28,24 +28,25 @@ class RenderHelper {
 		var kx = (vpMax.x - vpMin.x) / vpWidth;
 		var ky = (vpMax.y - vpMin.y) / vpHeight;
 
+		return { kx: kx, ky: ky };
+	}
+
+	public static countScreenCoords(realCoords: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IPoint {
+		var vpMin = viewBoardCoords.a;
+		var k = RenderHelper.countMappingScale(viewBoardCoords, viewportSize);
+
 		return {
-			x: (realCoords.x - vpMin.x) / kx,
-			y: (realCoords.y - vpMin.y) / ky
+			x: (realCoords.x - vpMin.x) / k.kx,
+			y: (realCoords.y - vpMin.y) / k.ky
 		};
 	}
 
 	public static countScreenSize(realSize: ISize, viewBoardCoords: IRect, viewportSize: ISize, scale: number): ISize {
-		var vpMin = viewBoardCoords.a;
-		var vpMax = viewBoardCoords.b;
-		var vpWidth = viewportSize.width;
-		var vpHeight = viewportSize.height;
-
-		var kx = (vpMax.x - vpMin.x) / vpWidth;
-		var ky = (vpMax.y - vpMin.y) / vpHeight;
+		var k = RenderHelper.countMappingScale(viewBoardCoords, viewportSize);
 
 		return {
-			width: realSize.width / kx * scale,
-			height: realSize.height / ky * scale
+			width: realSize.width / k.kx * scale,
+			height: realSize.height / k.ky * scale
 		};
 	}
 
@@ -58,17 +59,11 @@ class RenderHelper {
 	}
 
 	private static countRealDelta(deltaScreen: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IPoint {
-		var vpMin = viewBoardCoords.a;
-		var vpMax = viewBoardCoords.b;
-		var vpWidth = viewportSize.width;
-		var vpHeight = viewportSize.height;
-
-		var kx = (vpMax.x - vpMin.x) / vpWidth;
-		var ky = (vpMax.y - vpMin.y) / vpHeight;
+		var k = RenderHelper.countMappingScale(viewBoardCoords, viewportSize);
 
 		return {
-			x: deltaScreen.x * kx,
-			y: deltaScreen.y * ky
+			x: deltaScreen.x * k.kx,
+			y: deltaScreen.y * k.ky
 		};
 	}
 
@@ -99,16 +94,11 @@ class RenderHelper {
 
 	private static countRealCoordinates(screenPoint: IPoint, viewBoardCoords: IRect, viewportSize: ISize): IPoint {
 		var vpMin = viewBoardCoords.a;
-		var vpMax = viewBoardCoords.b;
-		var vpWidth = viewportSize.width;
-		var vpHeight = viewportSize.height;
-
-		var kx = (vpMax.x - vpMin.x) / vpWidth;
-		var ky = (vpMax.y - vpMin.y) / vpHeight;
+		var k = RenderHelper.countMappingScale(viewBoardCoords, viewportSize);
 
 		return {
-			x: vpMin.x + screenPoint.x * kx,
-			y: vpMin.y + screenPoint.y * ky
+			x: vpMin.x + screenPoint.x * k.kx,
+			y: vpMin.y + screenPoint.y * k.ky
 		};
 	}
 
