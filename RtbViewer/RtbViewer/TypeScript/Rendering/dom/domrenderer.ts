@@ -1,19 +1,19 @@
-﻿interface IWidgetRenderer {
+﻿interface IDomWidgetRenderer {
 	getWidgetType(): number;
 	render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IRect, viewportSize: ISize): void;
 }
 
 class DomRenderer implements IRenderer {
-	private _widgetRenderers: IDictionary<IWidgetRenderer> = {};
+	private _widgetRenderers: IDictionary<IDomWidgetRenderer> = {};
 
 	constructor() {
 		//TODO: фабрику вместо этой хрени
-		this.addWidgetRenderer(new StickerRenderer());
-		this.addWidgetRenderer(new ImageRenderer());
-		this.addWidgetRenderer(new TextRenderer());
+		this.addWidgetRenderer(new StickerDomRenderer());
+		this.addWidgetRenderer(new ImageDomRenderer());
+		this.addWidgetRenderer(new TextDomRenderer());
 	}
 
-	public addWidgetRenderer(widgetRenderer: IWidgetRenderer) {
+	public addWidgetRenderer(widgetRenderer: IDomWidgetRenderer) {
 		this._widgetRenderers[widgetRenderer.getWidgetType()] = widgetRenderer;
 	}
 

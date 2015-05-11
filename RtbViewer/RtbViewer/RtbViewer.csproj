@@ -30,12 +30,15 @@
   <ItemGroup>
     <TypeScriptCompile Include="TypeScript\board.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\canvasrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\canvas\imagecanvasrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\canvas\stickercanvasrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\canvas\textcanvasrenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\dom\domwidgethelper.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\dom\domrenderer.ts" />
     <TypeScriptCompile Include="TypeScript\init.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\imagerenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\stickerrenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\textrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\dom\imagedomrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\dom\stickerdomrenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\dom\textdomrenderer.ts" />
     <TypeScriptCompile Include="TypeScript\stringformatter.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\rendererhelper.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\renderer.ts" />

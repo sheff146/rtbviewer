@@ -1,4 +1,4 @@
-﻿class TextRenderer implements IWidgetRenderer {
+﻿class TextDomRenderer implements IDomWidgetRenderer {
 	public getWidgetType(): number {
 		return 4;
 	}

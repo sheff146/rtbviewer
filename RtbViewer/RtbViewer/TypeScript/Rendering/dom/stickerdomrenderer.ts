@@ -1,4 +1,4 @@
-﻿class StickerRenderer implements IWidgetRenderer {
+﻿class StickerDomRenderer implements IDomWidgetRenderer {
 	public getWidgetType(): number {
 		return 5;
 	}

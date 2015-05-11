@@ -1,4 +1,4 @@
-﻿class ImageRenderer implements IWidgetRenderer {
+﻿class ImageDomRenderer implements IDomWidgetRenderer {
 	public getWidgetType(): number {
 		return 1;
 	}
