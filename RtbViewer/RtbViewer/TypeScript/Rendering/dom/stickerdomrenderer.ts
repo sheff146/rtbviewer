@@ -3,25 +3,18 @@
 		return 5;
 	}
 
-	public render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IRect, viewportSize: ISize): void {
-		var sticker = DomWidgetHelper.createDiv(widget, viewBoardCoords, viewportSize);
-		var bgImage = DomWidgetHelper.createImage("assets/sticker.png", viewBoardCoords, viewportSize, widget.scale);
-		var text = this.createSpan(widget.text);
+	public render(widget: IWidget, layoutBoard: HTMLElement, viewportRect: IRect, viewportSize: ISize): void {
+		var sticker = DomWidgetHelper.createSticker(widget, viewportRect, viewportSize);
 
-		sticker.appendChild(bgImage);
-		sticker.appendChild(text);
+		sticker.innerText = widget.text;
+
+		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
+		var fontSize = 40 / k.ky;
+		sticker.style.fontSize = fontSize + "px";
+		sticker.style.lineHeight = "1.2";
+		sticker.style.padding = 15 / k.ky + "px";
+		sticker.style.textAlign = "center";
 
 		layoutBoard.appendChild(sticker);
-	}
-
-	private createSpan(text: string): HTMLElement {
-		var textElement = document.createElement("span");
-		
-		textElement.style.position = "absolute";
-		textElement.innerText = text;
-		//TODO: настроить размер и стиль текста
-		textElement.style.fontSize = "1px";
-
-		return textElement;
 	}
 }

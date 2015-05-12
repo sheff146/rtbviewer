@@ -1,10 +1,10 @@
 ﻿interface ICanvasWidgetRenderer {
 	getWidgetType(): number;
-	render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewBoardCoords: IRect, viewportSize: ISize): void;
+	render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewportRect: IRect, viewportSize: ISize): void;
 }
 
 class CanvasRenderer implements IRenderer {
-	private _widgetRenderers: IDictionary<ICanvasWidgetRenderer>;
+	private _widgetRenderers: IDictionary<ICanvasWidgetRenderer> = {};
 
 	constructor() {
 		//TODO: фабрику вместо этой хрени

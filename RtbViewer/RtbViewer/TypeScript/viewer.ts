@@ -20,7 +20,7 @@ class Viewer {
 		var viewRect = JSON.parse(jsonPosition);
 
 		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
-		this._viewRect = RenderHelper.countViewBoardCoords(viewRect, viewportSize);
+		this._viewRect = RenderHelper.countViewportRect(viewRect, viewportSize);
 	}
 
 	public addRenderer(renderer: IRenderer): void {

@@ -4,7 +4,7 @@
 	padding: 0;
 }
 
-div {
+div, span, p {
 	margin: 0;
 	padding: 0;
 	-webkit-box-sizing: border-box;

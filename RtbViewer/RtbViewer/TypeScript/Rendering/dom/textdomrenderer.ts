@@ -3,14 +3,14 @@
 		return 4;
 	}
 
-	public render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IRect, viewportSize: ISize): void {
-		var element = DomWidgetHelper.createDiv(widget, viewBoardCoords, viewportSize);
+	public render(widget: IWidget, layoutBoard: HTMLElement, viewportRect: IRect, viewportSize: ISize): void {
+		var element = DomWidgetHelper.createDiv(widget, viewportRect, viewportSize);
 
 		var realSize = { width: widget.width, height: 0 };
-		var screenSize = RenderHelper.countScreenSize(realSize, viewBoardCoords, viewportSize, widget.scale);
+		var screenSize = RenderHelper.countScreenSize(realSize, viewportRect, viewportSize, widget.scale);
 		element.style.width = screenSize.width + "px";
 		element.innerHTML = widget.text;
-		this.setUpTextStyle(element);
+		this.setUpTextStyle(element, viewportRect, viewportSize);
 
 		if (widget.style) {
 			if (widget.style.ta) {
@@ -24,7 +24,7 @@
 		layoutBoard.appendChild(element);
 	}
 
-	private setUpTextStyle(element: HTMLElement): void {
+	private setUpTextStyle(element: HTMLElement, viewportRect: IRect, viewportSize: ISize): void {
 		var el: any = element;
 
 		if (el.style.msUserSelect) {
@@ -41,6 +41,11 @@
 		}
 
 		//TODO: настроить размер и стиль текста
-		element.style.fontSize = "1px";
+		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
+
+		var fontSize = 90 / k.ky;
+		element.style.fontSize = fontSize + "px";
+
+		element.style.lineHeight = "1.2";
 	}
 }
