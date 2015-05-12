@@ -26,12 +26,12 @@
 		return StringFormatter.format(transformBlank, angle);
 	}
 
-	public static createImage(widget: IWidget, viewportRect: IRect, viewportSize: ISize): HTMLElement {
+	public static createImage(widget: IWidget, viewportParams: IViewPortParams): HTMLElement {
 		var image = document.createElement("img");
 
 		image.onload = () => {
 			var realSize = { width: image.width, height: image.height };
-			var screenSize = RenderHelper.countScreenSize(realSize, viewportRect, viewportSize, widget.scale);
+			var screenSize = RenderHelper.countScreenSize(realSize, viewportParams, widget.scale);
 
 			image.width = screenSize.width;
 			image.height = screenSize.height;
@@ -42,10 +42,10 @@
 		return image;
 	}
 
-	public static createSticker(widget: IWidget, viewportRect: IRect, viewportSize: ISize): HTMLElement {
+	public static createSticker(widget: IWidget, viewportParams: IViewPortParams): HTMLElement {
 		var sticker = document.createElement("div");
 		var realSize = { width: 223, height: 235 };
-		var layout = LayoutHelper.countWidgetLayout(widget, viewportRect, viewportSize, realSize);
+		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 		DomWidgetHelper.setWidgetLayout(sticker, layout);
 
 		sticker.style.backgroundImage = "url(assets/sticker.png)";

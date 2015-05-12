@@ -1,9 +1,9 @@
 ﻿class LayoutHelper {
-	public static countWidgetLayout(widget: IWidget, viewportRect: IRect, viewportSize: ISize, widgetRealSize: ISize = { width: 0, height: 0 }): ILayoutParams {
+	public static countWidgetLayout(widget: IWidget, viewportParams: IViewPortParams, widgetRealSize: ISize = { width: 0, height: 0 }): ILayoutParams {
 		var layout: ILayoutParams = {};
 		var widgetRealCoords = { x: widget.x, y: widget.y };
-		var widgetScreenCoords = RenderHelper.countScreenCoords(widgetRealCoords, viewportRect, viewportSize);
-		var widgetScreenSize = RenderHelper.countScreenSize(widgetRealSize, viewportRect, viewportSize, widget.scale);
+		var widgetScreenCoords = RenderHelper.countScreenCoords(widgetRealCoords, viewportParams);
+		var widgetScreenSize = RenderHelper.countScreenSize(widgetRealSize, viewportParams, widget.scale);
 
 		layout.width = widgetScreenSize.width;
 		layout.height = widgetScreenSize.height;

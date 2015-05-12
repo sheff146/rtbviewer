@@ -3,15 +3,15 @@
 		return 4;
 	}
 
-	public render(widget: IWidget, layoutBoard: HTMLElement, viewportRect: IRect, viewportSize: ISize): void {
+	public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void {
 		var element = document.createElement("div");
 		var realSize = { width: widget.width, height: 0 };
-		var layout = LayoutHelper.countWidgetLayout(widget, viewportRect, viewportSize,realSize);
+		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 		DomWidgetHelper.setWidgetLayout(element, layout);
-		
+
 		element.innerHTML = widget.text;
 		element.id = widget.idStr;
-		this.setUpTextStyle(element, viewportRect, viewportSize);
+		this.setUpTextStyle(element, viewportParams);
 
 		if (widget.style) {
 			if (widget.style.ta) {
@@ -25,7 +25,7 @@
 		layoutBoard.appendChild(element);
 	}
 
-	private setUpTextStyle(element: HTMLElement, viewportRect: IRect, viewportSize: ISize): void {
+	private setUpTextStyle(element: HTMLElement, viewportParams: IViewPortParams): void {
 		var el: any = element;
 
 		if (el.style.msUserSelect) {
@@ -41,7 +41,7 @@
 			el.style.userSelect = "none";
 		}
 
-		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
+		var k = RenderHelper.countMappingScale(viewportParams);
 
 		var fontSize = 90 / k.ky;
 		element.style.fontSize = fontSize + "px";

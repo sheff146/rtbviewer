@@ -4,6 +4,7 @@
 
 		var viewport = document.getElementById("viewport");
 
+		// ReSharper disable once InconsistentNaming
 		var request = new XMLHttpRequest();
 		request.open("GET", "//api.realtimeboard.com/objects/74254402", true);
 		request.onreadystatechange = () => {

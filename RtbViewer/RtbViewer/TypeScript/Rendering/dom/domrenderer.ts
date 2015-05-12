@@ -1,6 +1,6 @@
 ﻿interface IDomWidgetRenderer {
 	getWidgetType(): number;
-	render(widget: IWidget, layoutBoard: HTMLElement, viewportRect: IRect, viewportSize: ISize): void;
+	render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void;
 }
 
 class DomRenderer implements IRenderer {
@@ -28,11 +28,12 @@ class DomRenderer implements IRenderer {
 	public draw(board: IBoard, viewport: HTMLElement, viewRect: IRect): void {
 		var layoutBoard = this.createLayout(board, viewport);
 		var viewportSize: ISize = { width: viewport.clientWidth, height: viewport.clientHeight };
+		var viewportParams = { rect: viewRect, size: viewportSize };
 
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
 			if (renderer) {
-				renderer.render(widget, layoutBoard, viewRect, viewportSize);
+				renderer.render(widget, layoutBoard, viewportParams);
 			}
 		});
 

@@ -3,9 +3,9 @@
 		return 1;
 	}
 
-	public render(widget: IWidget, layoutBoard: HTMLElement, viewportRect: IRect, viewportSize: ISize): void {
-		var image = DomWidgetHelper.createImage(widget, viewportRect, viewportSize);
-		var layout = LayoutHelper.countWidgetLayout(widget, viewportRect, viewportSize);
+	public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void {
+		var image = DomWidgetHelper.createImage(widget, viewportParams);
+		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams);
 
 		DomWidgetHelper.setWidgetLayout(image, layout);
 		image.id = widget.idStr;

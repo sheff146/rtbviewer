@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="TypeScript\board.ts" />
+    <TypeScriptCompile Include="TypeScript\iDictionary.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\canvasRenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\imageCanvasRenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\stickerCanvasRenderer.ts" />
@@ -39,7 +40,9 @@
     <TypeScriptCompile Include="TypeScript\Rendering\dom\imageDomRenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\dom\stickerDomRenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\dom\textDomRenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\iDeltaPoint.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\iSize.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\iViewPortParams.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\layoutHelper.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\layoutParams.ts" />
     <TypeScriptCompile Include="TypeScript\stringFormatter.ts" />

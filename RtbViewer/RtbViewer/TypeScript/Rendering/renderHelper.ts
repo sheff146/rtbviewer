@@ -14,7 +14,9 @@ class RenderHelper {
 		return { a: { x: xMinBoard, y: rMin.y }, b: { x: xMaxBoard, y: rMax.y } }
 	}
 
-	public static countMappingScale(viewportRect: IRect, viewportSize: ISize): { kx: number; ky: number } {
+	public static countMappingScale(viewportParams: IViewPortParams): { kx: number; ky: number } {
+		var viewportRect = viewportParams.rect;
+		var viewportSize = viewportParams.size;
 		var vpMin = viewportRect.a;
 		var vpMax = viewportRect.b;
 		var vpWidth = viewportSize.width;
@@ -26,9 +28,10 @@ class RenderHelper {
 		return { kx: kx, ky: ky };
 	}
 
-	public static countScreenCoords(realCoords: IPoint, viewportRect: IRect, viewportSize: ISize): IPoint {
+	public static countScreenCoords(realCoords: IPoint, viewportParams: IViewPortParams): IPoint {
+		var viewportRect = viewportParams.rect;
 		var vpMin = viewportRect.a;
-		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
+		var k = RenderHelper.countMappingScale(viewportParams);
 
 		return {
 			x: (realCoords.x - vpMin.x) / k.kx,
@@ -36,8 +39,8 @@ class RenderHelper {
 		};
 	}
 
-	public static countScreenSize(realSize: ISize, viewportRect: IRect, viewportSize: ISize, scale: number): ISize {
-		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
+	public static countScreenSize(realSize: ISize, viewportParams: IViewPortParams, scale: number): ISize {
+		var k = RenderHelper.countMappingScale(viewportParams);
 
 		return {
 			width: realSize.width / k.kx * scale,
@@ -45,25 +48,27 @@ class RenderHelper {
 		};
 	}
 
-	public static countNewDragRect(deltaXScreen: number, deltaYScreen: number, viewportRect: IRect, viewportSize: ISize): IRect {
-		var realDelta = RenderHelper.countRealDelta({ x: deltaXScreen, y: deltaYScreen }, viewportRect, viewportSize);
+	public static countNewDragRect(deltaScreen: IDeltaPoint, viewportParams: IViewPortParams): IRect {
+		var viewportRect = viewportParams.rect;
+		var realDelta = RenderHelper.countRealDelta(deltaScreen, viewportParams);
 		return {
-			a: { x: viewportRect.a.x - realDelta.x, y: viewportRect.a.y - realDelta.y },
-			b: { x: viewportRect.b.x - realDelta.x, y: viewportRect.b.y - realDelta.y }
+			a: { x: viewportRect.a.x - realDelta.deltaX, y: viewportRect.a.y - realDelta.deltaY },
+			b: { x: viewportRect.b.x - realDelta.deltaX, y: viewportRect.b.y - realDelta.deltaY }
 		};
 	}
 
-	private static countRealDelta(deltaScreen: IPoint, viewportRect: IRect, viewportSize: ISize): IPoint {
-		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
+	private static countRealDelta(deltaScreen: IDeltaPoint, viewportParams: IViewPortParams): IDeltaPoint {
+		var k = RenderHelper.countMappingScale(viewportParams);
 
 		return {
-			x: deltaScreen.x * k.kx,
-			y: deltaScreen.y * k.ky
+			deltaX: deltaScreen.deltaX * k.kx,
+			deltaY: deltaScreen.deltaY * k.ky
 		};
 	}
 
-	public static countNewZoomRect(scaleModifier: number, zoomScreenPoint: IPoint, viewportRect: IRect, viewportSize: ISize): IRect {
-		var zoomRealPoint = RenderHelper.countRealCoordinates(zoomScreenPoint, viewportRect, viewportSize);
+	public static countNewZoomRect(scaleModifier: number, zoomScreenPoint: IPoint, viewportParams: IViewPortParams): IRect {
+		var viewportRect = viewportParams.rect;
+		var zoomRealPoint = RenderHelper.countRealCoordinates(zoomScreenPoint, viewportParams);
 		var deltaScale = 1 + Math.abs(scaleModifier);
 		if (scaleModifier < 0) {
 			deltaScale = 1 / deltaScale;
@@ -87,9 +92,10 @@ class RenderHelper {
 		};
 	}
 
-	private static countRealCoordinates(screenPoint: IPoint, viewportRect: IRect, viewportSize: ISize): IPoint {
+	private static countRealCoordinates(screenPoint: IPoint, viewportParams: IViewPortParams): IPoint {
+		var viewportRect = viewportParams.rect;
 		var vpMin = viewportRect.a;
-		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
+		var k = RenderHelper.countMappingScale(viewportParams);
 
 		return {
 			x: vpMin.x + screenPoint.x * k.kx,
