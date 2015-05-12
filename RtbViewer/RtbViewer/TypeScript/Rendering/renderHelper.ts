@@ -1,8 +1,3 @@
-interface ISize {
-	width: number;
-	height: number;
-}
-
 class RenderHelper {
 	public static countViewportRect(startPosotion: IRect, viewportSize: ISize): IRect {
 		var rMin = startPosotion.a;

@@ -4,12 +4,13 @@
 	}
 
 	public render(widget: IWidget, layoutBoard: HTMLElement, viewportRect: IRect, viewportSize: ISize): void {
-		var element = DomWidgetHelper.createDiv(widget, viewportRect, viewportSize);
-
+		var element = document.createElement("div");
 		var realSize = { width: widget.width, height: 0 };
-		var screenSize = RenderHelper.countScreenSize(realSize, viewportRect, viewportSize, widget.scale);
-		element.style.width = screenSize.width + "px";
+		var layout = LayoutHelper.countWidgetLayout(widget, viewportRect, viewportSize,realSize);
+		DomWidgetHelper.setWidgetLayout(element, layout);
+		
 		element.innerHTML = widget.text;
+		element.id = widget.idStr;
 		this.setUpTextStyle(element, viewportRect, viewportSize);
 
 		if (widget.style) {
@@ -40,7 +41,6 @@
 			el.style.userSelect = "none";
 		}
 
-		//TODO: настроить размер и стиль текста
 		var k = RenderHelper.countMappingScale(viewportRect, viewportSize);
 
 		var fontSize = 90 / k.ky;
