@@ -31,6 +31,7 @@
     <TypeScriptCompile Include="TypeScript\boardLoader.ts" />
     <TypeScriptCompile Include="TypeScript\iDictionary.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\canvasRenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\canvas\canvasWidgetHelper.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\imageCanvasRenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\stickerCanvasRenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\textCanvasRenderer.ts" />
