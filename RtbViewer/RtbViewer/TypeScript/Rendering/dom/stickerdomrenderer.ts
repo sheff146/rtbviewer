@@ -3,25 +3,34 @@
 		return 5;
 	}
 
-	public render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IRect, viewportSize: ISize): void {
-		var sticker = DomWidgetHelper.createDiv(widget, viewBoardCoords, viewportSize);
-		var bgImage = DomWidgetHelper.createImage("assets/sticker.png", viewBoardCoords, viewportSize, widget.scale);
-		var text = this.createSpan(widget.text);
+	public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void {
+		var sticker = document.getElementById(widget.idStr);
+		var elementExists = true;
+		if (!sticker) {
+			elementExists = false;
+			sticker = document.createElement("div");
 
-		sticker.appendChild(bgImage);
-		sticker.appendChild(text);
+			sticker.innerText = widget.text;
+			sticker.id = widget.idStr;
 
-		layoutBoard.appendChild(sticker);
-	}
+			sticker.style.backgroundImage = "url(assets/sticker.png)";
+			sticker.style.backgroundSize = "100%";
 
-	private createSpan(text: string): HTMLElement {
-		var textElement = document.createElement("span");
-		
-		textElement.style.position = "absolute";
-		textElement.innerText = text;
-		//TODO: настроить размер и стиль текста
-		textElement.style.fontSize = "1px";
+			sticker.style.textAlign = "center";
+			sticker.style.lineHeight = "1.2";
+		}
 
-		return textElement;
+		var realSize = { width: 223, height: 235 };
+		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
+
+		DomWidgetHelper.setWidgetLayout(sticker, layout);
+
+		var k = RenderHelper.countMappingScale(viewportParams);
+		sticker.style.fontSize = 40 / k.ky + "px";
+		sticker.style.padding = 15 / k.ky + "px";
+
+		if (!elementExists) {
+			layoutBoard.appendChild(sticker);
+		}
 	}
 }

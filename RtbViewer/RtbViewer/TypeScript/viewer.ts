@@ -1,8 +1,4 @@
-﻿interface IDictionary<TValue> {
-	[key: string]: TValue;
-}
-
-class Viewer {
+﻿class Viewer {
 	private _board: IBoard;
 	private _viewport: HTMLElement;
 	private _renderer: IRenderer;
@@ -20,7 +16,7 @@ class Viewer {
 		var viewRect = JSON.parse(jsonPosition);
 
 		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
-		this._viewRect = RenderHelper.countViewBoardCoords(viewRect, viewportSize);
+		this._viewRect = RenderHelper.countViewportRect(viewRect, viewportSize);
 	}
 
 	public addRenderer(renderer: IRenderer): void {
@@ -45,15 +41,20 @@ class Viewer {
 
 	public zoom(scaleModifier: number, zoomPoint: IPoint) {
 		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
-		this._viewRect = RenderHelper.countNewZoomRect(scaleModifier, zoomPoint, this._viewRect, viewportSize);
-		this._renderer.clear(this._viewport);
+		var viewportParams = { size: viewportSize, rect: this._viewRect };
+
+		this._viewRect = RenderHelper.countNewZoomRect(scaleModifier, zoomPoint, viewportParams);
+		//this._renderer.clear(this._viewport);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 
 	public move(deltaX: number, deltaY: number) {
 		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
-		this._viewRect = RenderHelper.countNewDragRect(deltaX, deltaY, this._viewRect, viewportSize);
-		this._renderer.clear(this._viewport);
+		var viewportParams = { size: viewportSize, rect: this._viewRect };
+		var delta = { deltaX: deltaX, deltaY: deltaY };
+
+		this._viewRect = RenderHelper.countNewDragRect(delta, viewportParams);
+		//this._renderer.clear(this._viewport);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 }

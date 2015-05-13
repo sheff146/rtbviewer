@@ -3,7 +3,7 @@
 		return 4;
 	}
 
-	public render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewBoardCoords: IRect, viewportSize: ISize): void {
+	public render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewportParams: IViewPortParams): void {
 
 	}
 }

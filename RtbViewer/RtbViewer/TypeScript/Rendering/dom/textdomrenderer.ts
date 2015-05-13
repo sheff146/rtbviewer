@@ -3,44 +3,39 @@
 		return 4;
 	}
 
-	public render(widget: IWidget, layoutBoard: HTMLElement, viewBoardCoords: IRect, viewportSize: ISize): void {
-		var element = DomWidgetHelper.createDiv(widget, viewBoardCoords, viewportSize);
-
+	public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void {
 		var realSize = { width: widget.width, height: 0 };
-		var screenSize = RenderHelper.countScreenSize(realSize, viewBoardCoords, viewportSize, widget.scale);
-		element.style.width = screenSize.width + "px";
-		element.innerHTML = widget.text;
-		this.setUpTextStyle(element);
+		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 
-		if (widget.style) {
-			if (widget.style.ta) {
-				element.style.textAlign = RenderHelper.textAlignmentFromString(widget.style.ta);
+		var element = document.getElementById(widget.idStr);
+		var elementExists = true;
+		if (!element) {
+			elementExists = false;
+			element = document.createElement("div");
+
+			element.innerHTML = widget.text;
+			element.id = widget.idStr;
+
+			element.style.lineHeight = "1.2";
+
+			if (widget.style) {
+				if (widget.style.ta) {
+					element.style.textAlign = RenderHelper.textAlignmentFromString(widget.style.ta);
+				}
+				if (widget.style.bc) {
+					element.style.backgroundColor = RenderHelper.hexColorFromNumber(widget.style.bc);
+				}
 			}
-			if (widget.style.bc) {
-				element.style.backgroundColor = RenderHelper.hexColorFromNumber(widget.style.bc);
-			}
 		}
 
-		layoutBoard.appendChild(element);
-	}
+		DomWidgetHelper.setWidgetLayout(element, layout);
 
-	private setUpTextStyle(element: HTMLElement): void {
-		var el: any = element;
+		var k = RenderHelper.countMappingScale(viewportParams);
+		var fontSize = 90 / k.ky;
+		element.style.fontSize = fontSize + "px";
 
-		if (el.style.msUserSelect) {
-			el.style.msUserSelect = "none";
+		if (!elementExists) {
+			layoutBoard.appendChild(element);
 		}
-		if (el.style.webkitUserSelect) {
-			el.style.webkitUserSelect = "none";
-		}
-		if (el.style.mozUserSelect) {
-			el.style.mozUserSelect = "none";
-		}
-		if (el.style.userSelect) {
-			el.style.userSelect = "none";
-		}
-
-		//TODO: настроить размер и стиль текста
-		element.style.fontSize = "1px";
 	}
 }

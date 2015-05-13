@@ -1,10 +1,10 @@
 ﻿interface ICanvasWidgetRenderer {
 	getWidgetType(): number;
-	render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewBoardCoords: IRect, viewportSize: ISize): void;
+	render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewportParams: IViewPortParams): void;
 }
 
 class CanvasRenderer implements IRenderer {
-	private _widgetRenderers: IDictionary<ICanvasWidgetRenderer>;
+	private _widgetRenderers: IDictionary<ICanvasWidgetRenderer> = {};
 
 	constructor() {
 		//TODO: фабрику вместо этой хрени
@@ -13,7 +13,7 @@ class CanvasRenderer implements IRenderer {
 		this.addWidgetRenderer(new TextCanvasRenderer());
 	}
 
-	public addWidgetRenderer(widgetRenderer: IDomWidgetRenderer) {
+	public addWidgetRenderer(widgetRenderer: ICanvasWidgetRenderer) {
 		this._widgetRenderers[widgetRenderer.getWidgetType()] = widgetRenderer;
 	}
 
@@ -28,12 +28,14 @@ class CanvasRenderer implements IRenderer {
 	public draw(board: IBoard, viewport: HTMLElement, viewRect: IRect): void {
 		var canvas = this.createCanvas(board, viewport);
 		var viewportSize: ISize = { width: viewport.clientWidth, height: viewport.clientHeight };
+		var viewportParams = { rect: viewRect, size: viewportSize };
+
 		viewport.appendChild(canvas);
 
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
 			if (renderer) {
-				renderer.render(widget, canvas, viewRect, viewportSize);
+				renderer.render(widget, canvas, viewportParams);
 			}
 		});
 	}
