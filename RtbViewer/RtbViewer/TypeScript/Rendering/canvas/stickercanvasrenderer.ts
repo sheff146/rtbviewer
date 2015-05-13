@@ -18,9 +18,15 @@
 			var x = layout.x - layout.width / 2;
 			var y = layout.y - layout.height / 2;
 
+			var k = RenderHelper.countMappingScale(viewportParams);
+			var padding = 15 / k.ky;
+			layout.fontSize = 40 / k.ky;
+			layout.textAlign = "center";
+
 			context.save();
 			CanvasWidgetHelper.prepareContext(context, layout);
 			context.drawImage(stickerImage, x, y, layout.width, layout.height);
+			context.fillText(widget.text, layout.x, y + padding, layout.width - 2 * padding);
 			context.restore();
 		};
 

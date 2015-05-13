@@ -2,9 +2,18 @@
 	public static prepareContext(context: CanvasRenderingContext2D, layout: ILayoutParams): void {
 		var angleRad = (layout.rotate || 0) * Math.PI / 180;
 		var delta = CanvasWidgetHelper.countDelta(angleRad, layout);
-		
+
 		context.rotate(angleRad);
 		context.translate(delta.deltaX, delta.deltaY);
+
+		if (layout.fontSize) {
+			context.font = layout.fontSize + "px 'Segoe UI', sans-serif";
+			context.textBaseline = "top";
+		}
+
+		if (layout.textAlign) {
+			context.textAlign = layout.textAlign;
+		}
 	}
 
 	private static countDelta(angleRad: number, layout: ILayoutParams): IDeltaPoint {

@@ -17,7 +17,6 @@
 			sticker.style.backgroundSize = "100%";
 
 			sticker.style.textAlign = "center";
-			sticker.style.lineHeight = "1.2";
 		}
 
 		var realSize = { width: 223, height: 235 };
