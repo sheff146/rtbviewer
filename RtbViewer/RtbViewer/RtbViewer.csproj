@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="TypeScript\board.ts" />
+    <TypeScriptCompile Include="TypeScript\boardLoader.ts" />
     <TypeScriptCompile Include="TypeScript\iDictionary.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\canvasRenderer.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvas\imageCanvasRenderer.ts" />

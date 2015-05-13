@@ -1,30 +1,15 @@
 ﻿(() => {
 	document.addEventListener("DOMContentLoaded",() => {
 		var viewer: Viewer;
-
 		var viewport = document.getElementById("viewport");
+		var loader = new BoardLoader();
 
-		// ReSharper disable once InconsistentNaming
-		var request = new XMLHttpRequest();
-		request.open("GET", "//api.realtimeboard.com/objects/74254402", true);
-		request.onreadystatechange = () => {
-			if (request.readyState === XMLHttpRequest.DONE) {
-				if (request.status === 200) {
-					var response = request.responseText;
-					var board = JSON.parse(response);
-
-
-
-					viewer = new Viewer(board, viewport);
-					viewer.addRenderer(new DomRenderer());
-					viewer.addRenderer(new CanvasRenderer());
-					viewer.render("dom");
-				} else {
-					throw new Error("Ошибка загрузки данных");
-				}
-			}
-		};
-		request.send();
+		loader.loadBoard("74254402",(board: IBoard) => {
+			viewer = new Viewer(board, viewport);
+			viewer.addRenderer(new DomRenderer());
+			viewer.addRenderer(new CanvasRenderer());
+			viewer.render("dom");
+		});
 
 		var radioDom = document.getElementById("dom-renderer-switch");
 		var radioCanvas = document.getElementById("canvas-renderer-switch");
