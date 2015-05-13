@@ -1,5 +1,5 @@
 ﻿(() => {
-	document.addEventListener("DOMContentLoaded", () => {
+	document.addEventListener("DOMContentLoaded",() => {
 		var viewer: Viewer;
 
 		var viewport = document.getElementById("viewport");
@@ -71,17 +71,17 @@
 		var mousePosition: IPoint = { x: 0, y: 0 };
 		var isPressed = false;
 
-		viewport.addEventListener("mousedown", (ev: MouseEvent) => {
+		viewport.addEventListener("mousedown",(ev: MouseEvent) => {
 			isPressed = true;
 			mousePosition.x = ev.x;
 			mousePosition.y = ev.y;
 		});
 
-		viewport.addEventListener("mouseup", (ev: MouseEvent) => {
+		document.addEventListener("mouseup",(ev: MouseEvent) => {
 			isPressed = false;
 		});
 
-		viewport.addEventListener("mousemove", (ev: MouseEvent) => {
+		viewport.addEventListener("mousemove",(ev: MouseEvent) => {
 			if (isPressed) {
 				var deltaX = ev.x - mousePosition.x;
 				var deltaY = ev.y - mousePosition.y;

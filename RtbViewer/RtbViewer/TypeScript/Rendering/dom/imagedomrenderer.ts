@@ -10,6 +10,7 @@
 		if (!image) {
 			imageExists = false;
 			image = document.createElement("img");
+			image.ondragstart = () => { return false; };
 
 			image.onload = () => {
 				this.setImageSize(image, widget, viewportParams);
