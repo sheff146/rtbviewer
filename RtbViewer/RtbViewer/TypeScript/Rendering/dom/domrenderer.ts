@@ -26,9 +26,15 @@ class DomRenderer implements IRenderer {
 	}
 
 	public draw(board: IBoard, viewport: HTMLElement, viewRect: IRect): void {
-		var layoutBoard = this.createLayout(board, viewport);
 		var viewportSize: ISize = { width: viewport.clientWidth, height: viewport.clientHeight };
 		var viewportParams = { rect: viewRect, size: viewportSize };
+
+		var layoutBoard = document.getElementById(board.idStr);
+		var layoutExists = true;
+		if (!layoutBoard) {
+			layoutBoard = this.createLayout(board, viewport);
+			layoutExists = false;
+		}
 
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
@@ -37,7 +43,9 @@ class DomRenderer implements IRenderer {
 			}
 		});
 
-		viewport.appendChild(layoutBoard);
+		if (!layoutExists) {
+			viewport.appendChild(layoutBoard);
+		}
 	}
 
 	private createLayout(board: IBoard, viewport: HTMLElement): HTMLElement {

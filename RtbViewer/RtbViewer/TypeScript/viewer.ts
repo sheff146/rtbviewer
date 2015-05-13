@@ -44,7 +44,7 @@
 		var viewportParams = { size: viewportSize, rect: this._viewRect };
 
 		this._viewRect = RenderHelper.countNewZoomRect(scaleModifier, zoomPoint, viewportParams);
-		this._renderer.clear(this._viewport);
+		//this._renderer.clear(this._viewport);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 
@@ -54,7 +54,7 @@
 		var delta = { deltaX: deltaX, deltaY: deltaY };
 
 		this._viewRect = RenderHelper.countNewDragRect(delta, viewportParams);
-		this._renderer.clear(this._viewport);
+		//this._renderer.clear(this._viewport);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 }

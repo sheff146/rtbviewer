@@ -4,11 +4,35 @@
 	}
 
 	public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void {
-		var image = DomWidgetHelper.createImage(widget, viewportParams);
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams);
+		var image = <HTMLImageElement>document.getElementById(widget.idStr);
+		var imageExists = true;
+		if (!image) {
+			imageExists = false;
+			image = document.createElement("img");
+
+			image.onload = () => {
+				this.setImageSize(image, widget, viewportParams);
+			};
+
+			image.src = widget.url;
+			image.id = widget.idStr;
+		} else {
+			this.setImageSize(image, widget, viewportParams);
+		}
 
 		DomWidgetHelper.setWidgetLayout(image, layout);
-		image.id = widget.idStr;
-		layoutBoard.appendChild(image);
+
+		if (!imageExists) {
+			layoutBoard.appendChild(image);
+		}
+	}
+
+	private setImageSize(image: HTMLImageElement, widget: IWidget, viewportParams: IViewPortParams): void {
+		var realSize = { width: image.naturalWidth, height: image.naturalHeight };
+		var screenSize = RenderHelper.countScreenSize(realSize, viewportParams, widget.scale);
+
+		image.width = screenSize.width;
+		image.height = screenSize.height;
 	}
 }

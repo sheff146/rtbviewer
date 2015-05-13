@@ -4,23 +4,33 @@
 	}
 
 	public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void {
-		var sticker = document.createElement("div");
+		var sticker = document.getElementById(widget.idStr);
+		var elementExists = true;
+		if (!sticker) {
+			elementExists = false;
+			sticker = document.createElement("div");
+
+			sticker.innerText = widget.text;
+			sticker.id = widget.idStr;
+
+			sticker.style.backgroundImage = "url(assets/sticker.png)";
+			sticker.style.backgroundSize = "100%";
+
+			sticker.style.textAlign = "center";
+			sticker.style.lineHeight = "1.2";
+		}
+
 		var realSize = { width: 223, height: 235 };
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
+
 		DomWidgetHelper.setWidgetLayout(sticker, layout);
-
-		sticker.style.backgroundImage = "url(assets/sticker.png)";
-		sticker.style.backgroundSize = "100%";
-
-		sticker.innerText = widget.text;
-		sticker.id = widget.idStr;
 
 		var k = RenderHelper.countMappingScale(viewportParams);
 		sticker.style.fontSize = 40 / k.ky + "px";
-		sticker.style.lineHeight = "1.2";
 		sticker.style.padding = 15 / k.ky + "px";
-		sticker.style.textAlign = "center";
 
-		layoutBoard.appendChild(sticker);
+		if (!elementExists) {
+			layoutBoard.appendChild(sticker);
+		}
 	}
 }
