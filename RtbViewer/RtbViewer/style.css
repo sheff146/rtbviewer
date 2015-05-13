@@ -32,6 +32,17 @@ div, span, p {
 		border: 1px solid black;
 	}
 
+	#viewer p,
+	#viewer div,
+	#viewer span {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		-o-user-select: none;
+		user-select: none;
+		cursor: default;
+	}
+
 .toolbox .button {
 	width: 30px;
 	height: 30px;
