@@ -2,7 +2,7 @@
 	public static prepareContext(context: CanvasRenderingContext2D, layout: ILayoutParams): void {
 		var angleRad = (layout.rotate || 0) * Math.PI / 180;
 		var delta = CanvasWidgetHelper.countDelta(angleRad, layout);
-
+		
 		context.rotate(angleRad);
 		context.translate(delta.deltaX, delta.deltaY);
 	}
@@ -14,14 +14,5 @@
 		var yc1 = yc * Math.cos(angleRad) - xc * Math.sin(angleRad);
 
 		return { deltaX: xc1 - xc, deltaY: yc1 - yc };
-	}
-
-	public static revertContext(context: CanvasRenderingContext2D, layout: ILayoutParams): void {
-		var angleRad = (layout.rotate || 0) * Math.PI / 180;
-		var delta = CanvasWidgetHelper.countDelta(angleRad, layout);
-
-		context.translate(-delta.deltaX, -delta.deltaY);
-		context.rotate(-angleRad);
-
 	}
 }

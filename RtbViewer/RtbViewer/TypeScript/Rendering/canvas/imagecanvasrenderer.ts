@@ -18,9 +18,10 @@
 			var x = layout.x - layout.width / 2;
 			var y = layout.y - layout.height / 2;
 
+			context.save();
 			CanvasWidgetHelper.prepareContext(context, layout);
 			context.drawImage(image, x, y, layout.width, layout.height);
-			CanvasWidgetHelper.revertContext(context, layout);
+			context.restore();
 		};
 
 		image.src = widget.url;
