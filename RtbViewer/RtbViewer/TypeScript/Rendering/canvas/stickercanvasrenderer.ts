@@ -1,20 +1,18 @@
 ﻿class StickerCanvasRenderer implements ICanvasWidgetRenderer {
+	private static stickerSize = { width: 223, height: 235 };
+
 	public getWidgetType(): number {
 		return 5;
 	}
 
 	public render(widget: IWidget, canvas: HTMLCanvasElement, viewportParams: IViewPortParams): void {
-		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams);
+		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, StickerCanvasRenderer.stickerSize);
 		var stickerImage = new Image();
-		var realSize = { width: 223, height: 235 };
-		var screenSize = RenderHelper.countScreenSize(realSize, viewportParams, widget.scale);
 
 		stickerImage.onload = () => {
 			// ReSharper disable once RedundantTypeCast
 			var context = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-			layout.width = screenSize.width;
-			layout.height = screenSize.height;
 			var x = layout.x - layout.width / 2;
 			var y = layout.y - layout.height / 2;
 

@@ -11,9 +11,9 @@
 			context.textBaseline = "top";
 		}
 
-		if (layout.textAlign) {
-			context.textAlign = layout.textAlign;
-		}
+		context.textAlign = layout.textAlign
+			? layout.textAlign
+			: "left";
 	}
 
 	private static countDelta(angleRad: number, layout: ILayoutParams): IDeltaPoint {

@@ -104,7 +104,9 @@ class RenderHelper {
 	}
 
 	public static hexColorFromNumber(bc: number): string {
-		return "#" + bc.toString(16);
+		return bc < 0
+			? "transparent"
+			: "#" + bc.toString(16);
 	}
 
 	public static textAlignmentFromString(ta: string): string {
