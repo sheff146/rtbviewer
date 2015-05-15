@@ -7,5 +7,6 @@
 	backgroundColor?: string;
 	fontSize?: number;
 	rotate?: number;
-	lineHeightCoeff?:number;
+	lineHeightCoeff?: number;
+	padding?: number;
 }

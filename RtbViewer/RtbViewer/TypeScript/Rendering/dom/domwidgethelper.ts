@@ -33,6 +33,10 @@
 		if (layout.fontSize >= 0) {
 			element.style.fontSize = layout.fontSize + "px";
 		}
+
+		if (layout.padding >= 0) {
+			element.style.padding = layout.padding + "px";
+		}
 	}
 
 	private static createTransformString(layout: ILayoutParams): string {

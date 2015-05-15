@@ -8,10 +8,9 @@
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 
 		var element = document.getElementById(widget.idStr);
-		var elementExists = true;
+		var elementExists = element ? true : false;
 
 		if (!element) {
-			elementExists = false;
 			element = document.createElement("div");
 			element.innerHTML = widget.text;
 			element.id = widget.idStr;
