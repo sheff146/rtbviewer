@@ -10,21 +10,29 @@
 		var stickerImage = new Image();
 
 		stickerImage.onload = () => {
-			var x = layout.x - layout.width / 2;
-			var y = layout.y - layout.height / 2;
-
 			var k = RenderHelper.countMappingScale(viewportParams);
-			var padding = 15 / k.ky;
+			layout.padding = 15 / k.ky;
 			layout.fontSize = 40 / k.ky;
 			layout.textAlign = "center";
 
 			context.save();
 			CanvasWidgetHelper.prepareContext(context, layout);
-			context.drawImage(stickerImage, x, y, layout.width, layout.height);
-			context.fillText(widget.text, layout.x, y + padding, layout.width - 2 * padding);
+			this.renderBgImage(stickerImage, layout, context);
+			context.translate(0, -layout.height / 2);
+			context.fillText(widget.text, layout.x, layout.y + layout.padding, layout.width - 2 * layout.padding);
 			context.restore();
 		};
 
 		stickerImage.src = "assets/sticker.png";
+	}
+
+	private renderBgImage(image: HTMLImageElement, layout: ILayoutParams, context: CanvasRenderingContext2D): void {
+		var translateX = -layout.width / 2;
+		var translateY = -layout.height / 2;
+
+		context.save();
+		context.translate(translateX, translateY);
+		context.drawImage(image, layout.x, layout.y, layout.width, layout.height);
+		context.restore();
 	}
 }
