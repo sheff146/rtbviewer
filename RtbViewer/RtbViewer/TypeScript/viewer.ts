@@ -10,13 +10,20 @@
 		this._board = board;
 		this._viewport = viewport;
 		this._rendererCollection = {};
-		
-		//deep copy по-быстрому
-		var jsonPosition = JSON.stringify(board.startPosition);
-		var viewRect = JSON.parse(jsonPosition);
+
+		var boardRect = {
+			a: {
+				x: board.startPosition.a.x,
+				y: board.startPosition.a.y
+			},
+			b: {
+				x: board.startPosition.b.x,
+				y: board.startPosition.b.y
+			}
+		};
 
 		var viewportSize: ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
-		this._viewRect = RenderHelper.countViewportRect(viewRect, viewportSize);
+		this._viewRect = RenderHelper.countViewportRect(boardRect, viewportSize);
 	}
 
 	public addRenderer(renderer: IRenderer): void {
@@ -44,7 +51,6 @@
 		var viewportParams = { size: viewportSize, rect: this._viewRect };
 
 		this._viewRect = RenderHelper.countNewZoomRect(scaleModifier, zoomPoint, viewportParams);
-		//this._renderer.clear(this._viewport);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 
@@ -54,7 +60,6 @@
 		var delta = { deltaX: deltaX, deltaY: deltaY };
 
 		this._viewRect = RenderHelper.countNewDragRect(delta, viewportParams);
-		//this._renderer.clear(this._viewport);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 }

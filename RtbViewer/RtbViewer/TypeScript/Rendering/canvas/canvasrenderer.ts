@@ -26,11 +26,18 @@ class CanvasRenderer implements IRenderer {
 	}
 
 	public draw(board: IBoard, viewport: HTMLElement, viewRect: IRect): void {
-		var canvas = this.createCanvas(board, viewport);
 		var viewportSize: ISize = { width: viewport.clientWidth, height: viewport.clientHeight };
 		var viewportParams = { rect: viewRect, size: viewportSize };
 
-		viewport.appendChild(canvas);
+		var canvas = <HTMLCanvasElement>document.getElementById(board.idStr);
+		if (!canvas) {
+			canvas = this.createCanvas(board, viewport);
+			viewport.appendChild(canvas);
+		}
+
+		// ReSharper disable once RedundantTypeCast
+		var context = <CanvasRenderingContext2D>canvas.getContext("2d");
+		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
@@ -41,16 +48,16 @@ class CanvasRenderer implements IRenderer {
 	}
 
 	private createCanvas(board: IBoard, viewport: HTMLElement): HTMLCanvasElement {
-		var layout = document.createElement("canvas");
+		var canvas = document.createElement("canvas");
 
-		layout.id = board.idStr;
-		layout.style.position = "absolute";
-		layout.style.backgroundColor = "#DDDDDD";
-		layout.style.left = 0 + "px";
-		layout.style.top = 0 + "px";
-		layout.style.width = viewport.clientWidth + "px";
-		layout.style.height = viewport.clientHeight + "px";
+		canvas.id = board.idStr;
+		canvas.style.position = "absolute";
+		canvas.style.backgroundColor = "#DDDDDD";
+		canvas.style.left = 0 + "px";
+		canvas.style.top = 0 + "px";
+		canvas.width = viewport.clientWidth;
+		canvas.height = viewport.clientHeight;
 
-		return layout;
+		return canvas;
 	}
 } 
