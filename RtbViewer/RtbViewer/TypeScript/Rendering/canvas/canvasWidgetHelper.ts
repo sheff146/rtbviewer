@@ -1,5 +1,28 @@
 ﻿class CanvasWidgetHelper {
-	public static prepareContext(context: CanvasRenderingContext2D, layout: ILayoutParams): void {
+	public static prepareContextForText(context: CanvasRenderingContext2D, layout: ILayoutParams): void {
+		context.textAlign = layout.textAlign
+			? layout.textAlign
+			: "left";
+
+		var translateX = 0;
+		var translateY = -layout.height / 2;
+
+		switch (layout.textAlign) {
+			case "center":
+				translateX = 0;
+				break;
+			case "right":
+				translateX = layout.width / 2;
+				break;
+			case "left":
+			default:
+				translateX = - layout.width / 2;
+		}
+
+		context.translate(translateX, translateY);
+	}
+
+	public static prepareContextForBackground(context: CanvasRenderingContext2D, layout: ILayoutParams): void {
 		var angleRad = (layout.rotate || 0) * Math.PI / 180;
 		var delta = CanvasWidgetHelper.countDelta(angleRad, layout);
 
@@ -10,10 +33,6 @@
 			context.font = layout.fontSize + "px 'Segoe UI', sans-serif";
 			context.textBaseline = "top";
 		}
-
-		context.textAlign = layout.textAlign
-			? layout.textAlign
-			: "left";
 	}
 
 	private static countDelta(angleRad: number, layout: ILayoutParams): IDeltaPoint {

@@ -7,44 +7,28 @@
 		var realSize = { width: widget.width, height: 0 };
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 
-		var k = RenderHelper.countMappingScale(viewportParams);
-		layout.fontSize = 90 / k.ky;
-		if (widget.style && widget.style.ta) {
-			layout.textAlign = RenderHelper.textAlignmentFromString(widget.style.ta);
-		}
-
-		CanvasWidgetHelper.prepareContext(context, layout);
-		var marginTop = 0;
-		var lineHeight = 1.2;
+		CanvasWidgetHelper.prepareContextForBackground(context, layout);
 
 		var cleanText = this.parseInnerText(widget);
 		var strings = this.wrapText(cleanText, layout, context);
-
-		layout.height = strings.length * layout.fontSize * lineHeight;
-		if (widget.style && widget.style.bc) {
-			layout.backgroundColor = RenderHelper.hexColorFromNumber(widget.style.bc);
-		}
-
-		var x: number;
-		switch (layout.textAlign) {
-			case "right":
-				x = layout.x + layout.width / 2;
-				break;
-			case "left":
-			default:
-				x = layout.x - layout.width / 2;
-		}
-		var y = layout.y - layout.height / 2;
+		layout.height = strings.length * layout.fontSize * layout.lineHeightCoeff;
 
 		if (layout.backgroundColor) {
 			context.save();
+			var translateX = -layout.width / 2;
+			var translateY = -layout.height / 2;
 			context.fillStyle = layout.backgroundColor;
-			context.fillRect(x, y, layout.width, layout.height);
+			context.translate(translateX, translateY);
+			context.fillRect(layout.x, layout.y, layout.width, layout.height);
 			context.restore();
 		}
+
+		CanvasWidgetHelper.prepareContextForText(context, layout);
+
+		var marginTop = 0;
 		for (var i = 0; i < strings.length; i++) {
-			marginTop = i * layout.fontSize * lineHeight;
-			context.fillText(strings[i], x, y + marginTop, layout.width);
+			marginTop = i * layout.fontSize * layout.lineHeightCoeff;
+			context.fillText(strings[i], layout.x, layout.y + marginTop, layout.width);
 		}
 	}
 

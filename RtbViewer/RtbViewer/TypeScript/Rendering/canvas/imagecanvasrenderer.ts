@@ -14,7 +14,7 @@
 			var translateY = -layout.height / 2;
 
 			context.save();
-			CanvasWidgetHelper.prepareContext(context, layout);
+			CanvasWidgetHelper.prepareContextForBackground(context, layout);
 			context.translate(translateX, translateY);
 			context.drawImage(image, layout.x, layout.y, layout.width, layout.height);
 			context.restore();

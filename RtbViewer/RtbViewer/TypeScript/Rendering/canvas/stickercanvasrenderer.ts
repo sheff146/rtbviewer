@@ -16,9 +16,10 @@
 			layout.textAlign = "center";
 
 			context.save();
-			CanvasWidgetHelper.prepareContext(context, layout);
+			CanvasWidgetHelper.prepareContextForBackground(context, layout);
 			this.renderBgImage(stickerImage, layout, context);
-			context.translate(0, -layout.height / 2);
+
+			CanvasWidgetHelper.prepareContextForText(context, layout);
 			context.fillText(widget.text, layout.x, layout.y + layout.padding, layout.width - 2 * layout.padding);
 			context.restore();
 		};
