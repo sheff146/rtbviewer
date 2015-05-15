@@ -13,8 +13,6 @@
 			layout.textAlign = RenderHelper.textAlignmentFromString(widget.style.ta);
 		}
 
-		context.save();
-
 		CanvasWidgetHelper.prepareContext(context, layout);
 		var marginTop = 0;
 		var lineHeight = 1.2;
@@ -48,8 +46,6 @@
 			marginTop = i * layout.fontSize * lineHeight;
 			context.fillText(strings[i], x, y + marginTop, layout.width);
 		}
-
-		context.restore();
 	}
 
 	private parseInnerText(widget: IWidget): string[] {

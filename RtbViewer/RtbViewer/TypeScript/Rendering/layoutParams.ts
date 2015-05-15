@@ -7,4 +7,5 @@
 	backgroundColor?: string;
 	fontSize?: number;
 	rotate?: number;
+	lineHeightCoeff?:number;
 }
