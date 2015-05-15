@@ -1,9 +1,4 @@
-﻿interface ICanvasWidgetRenderer {
-	getWidgetType(): number;
-	render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewportParams: IViewPortParams): void;
-}
-
-class CanvasRenderer implements IRenderer {
+﻿class CanvasRenderer implements IRenderer {
 	private _widgetRenderers: IDictionary<ICanvasWidgetRenderer> = {};
 
 	constructor() {

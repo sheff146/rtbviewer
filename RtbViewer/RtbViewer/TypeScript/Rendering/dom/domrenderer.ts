@@ -1,9 +1,4 @@
-﻿interface IDomWidgetRenderer {
-	getWidgetType(): number;
-	render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void;
-}
-
-class DomRenderer implements IRenderer {
+﻿class DomRenderer implements IRenderer {
 	private _widgetRenderers: IDictionary<IDomWidgetRenderer> = {};
 
 	constructor() {
