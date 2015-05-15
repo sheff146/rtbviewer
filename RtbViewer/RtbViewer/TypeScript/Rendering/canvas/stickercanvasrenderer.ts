@@ -5,14 +5,11 @@
 		return 5;
 	}
 
-	public render(widget: IWidget, canvas: HTMLCanvasElement, viewportParams: IViewPortParams): void {
+	public render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: IViewPortParams): void {
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, StickerCanvasRenderer.stickerSize);
 		var stickerImage = new Image();
 
 		stickerImage.onload = () => {
-			// ReSharper disable once RedundantTypeCast
-			var context = <CanvasRenderingContext2D>canvas.getContext("2d");
-
 			var x = layout.x - layout.width / 2;
 			var y = layout.y - layout.height / 2;
 

@@ -37,7 +37,9 @@
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
 			if (renderer) {
-				renderer.render(widget, canvas, viewportParams);
+				context.save();
+				renderer.render(widget, context, viewportParams);
+				context.restore();
 			}
 		});
 	}

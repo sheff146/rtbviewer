@@ -3,10 +3,9 @@
 		return 4;
 	}
 
-	public render(widget: IWidget, canvas: HTMLCanvasElement, viewportParams: IViewPortParams): void {
+	public render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: IViewPortParams): void {
 		var realSize = { width: widget.width, height: 0 };
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
-		var context = <CanvasRenderingContext2D>canvas.getContext("2d");
 
 		var k = RenderHelper.countMappingScale(viewportParams);
 		layout.fontSize = 90 / k.ky;

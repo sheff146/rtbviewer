@@ -1,4 +1,4 @@
 ﻿interface ICanvasWidgetRenderer {
 	getWidgetType(): number;
-	render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewportParams: IViewPortParams): void;
+	render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: IViewPortParams): void;
 }

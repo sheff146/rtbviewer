@@ -3,15 +3,13 @@
 		return 1;
 	}
 
-	public render(widget: IWidget, canvas: HTMLCanvasElement, viewportParams: IViewPortParams): void {
+	public render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: IViewPortParams): void {
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams);
 		var image = new Image();
 
 		image.onload = () => {
 			var realSize = { width: image.naturalWidth, height: image.naturalHeight };
 			var screenSize = RenderHelper.countScreenSize(realSize, viewportParams, widget.scale);
-			// ReSharper disable once RedundantTypeCast
-			var context = <CanvasRenderingContext2D>canvas.getContext("2d");
 
 			layout.width = screenSize.width;
 			layout.height = screenSize.height;
