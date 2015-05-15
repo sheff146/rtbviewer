@@ -19,13 +19,16 @@
 		CanvasWidgetHelper.prepareContext(context, layout);
 		var marginTop = 0;
 		var lineHeight = 1.2;
-		var strings = this.wrapText(widget.text, layout, context);
+
+		var cleanText = this.parseInnerText(widget);
+		var strings = this.wrapText(cleanText, layout, context);
+
 		layout.height = strings.length * layout.fontSize * lineHeight;
 		if (widget.style && widget.style.bc) {
 			layout.backgroundColor = RenderHelper.hexColorFromNumber(widget.style.bc);
 		}
 
-		var x = layout.x;
+		var x: number;
 		switch (layout.textAlign) {
 			case "right":
 				x = layout.x + layout.width / 2;
@@ -50,24 +53,62 @@
 		context.restore();
 	}
 
-	private wrapText(text: string, layout: ILayoutParams, context: CanvasRenderingContext2D): string[] {
-		var words = text.split(" ");
-        var countWords = words.length;
-        var line = "";
-		var maxWidth = layout.width;
+	private parseInnerText(widget: IWidget): string[] {
+		var parser = new DOMParser();
+		var doc = parser.parseFromString(widget.text, "text/html");
+		var paragraphs = doc.getElementsByTagName("p");
 		var result: string[] = [];
 
-        for (var n = 0; n < countWords; n++) {
-            var testLine = line + words[n] + " ";
-            var testWidth = context.measureText(testLine).width;
-            if (testWidth > maxWidth) {
-				result.push(line);
-                line = words[n] + " ";
-            }
-            else {
-                line = testLine;
-            }
-        }
+		for (var i = 0; i < paragraphs.length; i++) {
+			result.push(paragraphs.item(i).innerText);
+		}
+
+		return result;
+	}
+
+	private wrapText(paragraphs: string[], layout: ILayoutParams, context: CanvasRenderingContext2D): string[] {
+		var result: string[] = [];
+		var i: number;
+
+		for (i = 0; i < paragraphs.length; i++) {
+			var paragraphStrings = this.wrapParagraph(paragraphs[i], layout, context);
+			result = result.concat(paragraphStrings);
+		}
+
+		return result;
+	}
+
+	private wrapParagraph(paragraphText: string, layout: ILayoutParams, context: CanvasRenderingContext2D): string[] {
+		var result: string[] = [];
+
+		var currentLine = "";
+		var testLine: string;
+		var testWidth: number;
+		var j: number;
+
+		var maxWidth = Math.ceil(layout.width);
+		var words = paragraphText.split(" ");
+
+		if (words.length < 2) {
+			return words;
+		}
+
+		for (j = 0; j < words.length; j++) {
+			testLine = currentLine.length === 0
+				? words[j]
+				: currentLine + " " + words[j];
+
+			testWidth = context.measureText(testLine).width;
+
+			if (testWidth < maxWidth) {
+				currentLine = testLine;
+			} else {
+				result.push(currentLine);
+				currentLine = words[j];
+			}
+		}
+
+		result.push(currentLine);
 
 		return result;
 	}
