@@ -4,36 +4,29 @@
 	}
 
 	public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: IViewPortParams): void {
-		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams);
+		var layout: ILayoutParams;
 		var image = <HTMLImageElement>document.getElementById(widget.idStr);
-		var imageExists = true;
+
 		if (!image) {
-			imageExists = false;
 			image = document.createElement("img");
 			image.ondragstart = () => { return false; };
 
 			image.onload = () => {
-				this.setImageSize(image, widget, viewportParams);
+				layout = this.countImageLayout(image, widget, viewportParams);
+				DomWidgetHelper.setWidgetLayout(image, layout);
+				layoutBoard.appendChild(image);
 			};
 
 			image.src = widget.url;
 			image.id = widget.idStr;
 		} else {
-			this.setImageSize(image, widget, viewportParams);
-		}
-
-		DomWidgetHelper.setWidgetLayout(image, layout);
-
-		if (!imageExists) {
-			layoutBoard.appendChild(image);
+			layout = this.countImageLayout(image, widget, viewportParams);
+			DomWidgetHelper.setWidgetLayout(image, layout);
 		}
 	}
 
-	private setImageSize(image: HTMLImageElement, widget: IWidget, viewportParams: IViewPortParams): void {
+	private countImageLayout(image: HTMLImageElement, widget: IWidget, viewportParams: IViewPortParams): ILayoutParams {
 		var realSize = { width: image.naturalWidth, height: image.naturalHeight };
-		var screenSize = RenderHelper.countScreenSize(realSize, viewportParams, widget.scale);
-
-		image.width = screenSize.width;
-		image.height = screenSize.height;
+		return LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 	}
 }

@@ -1,9 +1,4 @@
-﻿interface ICanvasWidgetRenderer {
-	getWidgetType(): number;
-	render(widget: IWidget, layoutCanvas: HTMLCanvasElement, viewportParams: IViewPortParams): void;
-}
-
-class CanvasRenderer implements IRenderer {
+﻿class CanvasRenderer implements IRenderer {
 	private _widgetRenderers: IDictionary<ICanvasWidgetRenderer> = {};
 
 	constructor() {
@@ -42,7 +37,9 @@ class CanvasRenderer implements IRenderer {
 		board.widgets.forEach((widget: IWidget) => {
 			var renderer = this._widgetRenderers[widget.type];
 			if (renderer) {
-				renderer.render(widget, canvas, viewportParams);
+				context.save();
+				renderer.render(widget, context, viewportParams);
+				context.restore();
 			}
 		});
 	}

@@ -1,10 +1,10 @@
 ﻿(() => {
-	document.addEventListener("DOMContentLoaded",() => {
+	document.addEventListener("DOMContentLoaded", () => {
 		var viewer: Viewer;
 		var viewport = document.getElementById("viewport");
 		var loader = new BoardLoader();
 
-		loader.loadBoard("74254402",(board: IBoard) => {
+		loader.loadBoard("74254402", (board: IBoard) => {
 			viewer = new Viewer(board, viewport);
 			viewer.addRenderer(new DomRenderer());
 			viewer.addRenderer(new CanvasRenderer());
@@ -26,6 +26,14 @@
 		var btnZoomIn = document.getElementById("zoom-in");
 		var btnZoomOut = document.getElementById("zoom-out");
 
+		var getCurrentMousePosition = (ev: MouseEvent) => {
+			var curTarget = <HTMLElement>ev.currentTarget;
+			var x = ev.clientX - curTarget.clientLeft;
+			var y = ev.clientY - curTarget.clientTop;
+
+			return { x: x, y: y };
+		}
+
 		var zoomHandler = (ev: MouseWheelEvent) => {
 			var curTarget = <HTMLElement>ev.currentTarget;
 			var zoomMultiplier = 0;
@@ -40,8 +48,7 @@
 					break;
 				case "viewport":
 					zoomMultiplier = (<any>ev).deltaY > 0 ? 0.1 : -0.1;
-					zoomPoint.x = ev.x;
-					zoomPoint.y = ev.y;
+					zoomPoint = getCurrentMousePosition(ev);
 					break;
 			}
 
@@ -56,23 +63,23 @@
 		var mousePosition: IPoint = { x: 0, y: 0 };
 		var isPressed = false;
 
-		viewport.addEventListener("mousedown",(ev: MouseEvent) => {
+		viewport.addEventListener("mousedown", (ev: MouseEvent) => {
 			isPressed = true;
-			mousePosition.x = ev.x;
-			mousePosition.y = ev.y;
+			mousePosition = getCurrentMousePosition(ev);
 		});
 
-		document.addEventListener("mouseup",(ev: MouseEvent) => {
+		document.addEventListener("mouseup", (ev: MouseEvent) => {
 			isPressed = false;
 		});
 
-		viewport.addEventListener("mousemove",(ev: MouseEvent) => {
+		viewport.addEventListener("mousemove", (ev: MouseEvent) => {
 			if (isPressed) {
-				var deltaX = ev.x - mousePosition.x;
-				var deltaY = ev.y - mousePosition.y;
+				var currentPosition = getCurrentMousePosition(ev);
 
-				mousePosition.x = ev.x;
-				mousePosition.y = ev.y;
+				var deltaX = currentPosition.x - mousePosition.x;
+				var deltaY = currentPosition.y - mousePosition.y;
+
+				mousePosition = currentPosition;
 
 				viewer.move(deltaX, deltaY);
 			}

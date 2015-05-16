@@ -17,6 +17,26 @@
 		if (layout.height) {
 			style.height = layout.height + "px";
 		}
+
+		if (layout.lineHeightCoeff) {
+			element.style.lineHeight = layout.lineHeightCoeff.toString();
+		}
+
+		if (layout.backgroundColor) {
+			element.style.backgroundColor = layout.backgroundColor;
+		}
+
+		if (layout.textAlign) {
+			element.style.textAlign = layout.textAlign;
+		}
+
+		if (layout.fontSize >= 0) {
+			element.style.fontSize = layout.fontSize + "px";
+		}
+
+		if (layout.padding >= 0) {
+			element.style.padding = layout.padding + "px";
+		}
 	}
 
 	private static createTransformString(layout: ILayoutParams): string {

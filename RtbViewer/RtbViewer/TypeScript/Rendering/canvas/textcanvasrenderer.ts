@@ -3,54 +3,30 @@
 		return 4;
 	}
 
-	public render(widget: IWidget, canvas: HTMLCanvasElement, viewportParams: IViewPortParams): void {
+	public render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: IViewPortParams): void {
 		var realSize = { width: widget.width, height: 0 };
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
-		var context = <CanvasRenderingContext2D>canvas.getContext("2d");
+		var cleanText = this.parseInnerText(widget);
 
-		var k = RenderHelper.countMappingScale(viewportParams);
-		layout.fontSize = 90 / k.ky;
-		if (widget.style && widget.style.ta) {
-			layout.textAlign = RenderHelper.textAlignmentFromString(widget.style.ta);
-		}
+		//чтобы рассчитать ширину текста, надо подготовить canvas, но рендерить его надо после фона,
+		//поэтому вот так
+		context.save();
+		CanvasWidgetHelper.prepareContextForText(context, layout);
+		var strings = this.wrapText(cleanText, layout, context);
+		layout.height = strings.length * layout.fontSize * layout.lineHeightCoeff;
+		context.restore();
 
 		context.save();
-
-		CanvasWidgetHelper.prepareContext(context, layout);
-		var marginTop = 0;
-		var lineHeight = 1.2;
-
-		var cleanText = this.parseInnerText(widget);
-		var strings = this.wrapText(cleanText, layout, context);
-
-		layout.height = strings.length * layout.fontSize * lineHeight;
-		if (widget.style && widget.style.bc) {
-			layout.backgroundColor = RenderHelper.hexColorFromNumber(widget.style.bc);
-		}
-
-		var x: number;
-		switch (layout.textAlign) {
-			case "right":
-				x = layout.x + layout.width / 2;
-				break;
-			case "left":
-			default:
-				x = layout.x - layout.width / 2;
-		}
-		var y = layout.y - layout.height / 2;
-
-		if (layout.backgroundColor) {
-			context.save();
-			context.fillStyle = layout.backgroundColor;
-			context.fillRect(x, y, layout.width, layout.height);
-			context.restore();
-		}
-		for (var i = 0; i < strings.length; i++) {
-			marginTop = i * layout.fontSize * lineHeight;
-			context.fillText(strings[i], x, y + marginTop, layout.width);
-		}
-
+		CanvasWidgetHelper.prepareContextForBackground(context, layout);
+		context.fillRect(layout.x, layout.y, layout.width, layout.height);
 		context.restore();
+
+		CanvasWidgetHelper.prepareContextForText(context, layout);
+
+		for (var i = 0; i < strings.length; i++) {
+			var marginTop = i * layout.fontSize * layout.lineHeightCoeff;
+			context.fillText(strings[i], layout.x, layout.y + marginTop, layout.width);
+		}
 	}
 
 	private parseInnerText(widget: IWidget): string[] {

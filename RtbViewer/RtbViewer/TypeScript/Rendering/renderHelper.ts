@@ -111,12 +111,11 @@ class RenderHelper {
 
 	public static textAlignmentFromString(ta: string): string {
 		switch (ta) {
-			case "l":
-				return "left";
 			case "c":
 				return "center";
 			case "r":
 				return "right";
+			case "l":
 			default:
 				return "left";
 		}
