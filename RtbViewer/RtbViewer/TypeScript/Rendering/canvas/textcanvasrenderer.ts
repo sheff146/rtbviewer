@@ -6,28 +6,25 @@
 	public render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: IViewPortParams): void {
 		var realSize = { width: widget.width, height: 0 };
 		var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
-
-		CanvasWidgetHelper.prepareContextForBackground(context, layout);
-
 		var cleanText = this.parseInnerText(widget);
+
+		//чтобы рассчитать ширину текста, надо подготовить canvas, но рендерить его надо после фона,
+		//поэтому вот так
+		context.save();
+		CanvasWidgetHelper.prepareContextForText(context, layout);
 		var strings = this.wrapText(cleanText, layout, context);
 		layout.height = strings.length * layout.fontSize * layout.lineHeightCoeff;
+		context.restore();
 
-		if (layout.backgroundColor) {
-			context.save();
-			var translateX = -layout.width / 2;
-			var translateY = -layout.height / 2;
-			context.fillStyle = layout.backgroundColor;
-			context.translate(translateX, translateY);
-			context.fillRect(layout.x, layout.y, layout.width, layout.height);
-			context.restore();
-		}
+		context.save();
+		CanvasWidgetHelper.prepareContextForBackground(context, layout);
+		context.fillRect(layout.x, layout.y, layout.width, layout.height);
+		context.restore();
 
 		CanvasWidgetHelper.prepareContextForText(context, layout);
 
-		var marginTop = 0;
 		for (var i = 0; i < strings.length; i++) {
-			marginTop = i * layout.fontSize * layout.lineHeightCoeff;
+			var marginTop = i * layout.fontSize * layout.lineHeightCoeff;
 			context.fillText(strings[i], layout.x, layout.y + marginTop, layout.width);
 		}
 	}

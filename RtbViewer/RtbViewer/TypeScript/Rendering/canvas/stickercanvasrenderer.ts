@@ -17,23 +17,15 @@
 
 			context.save();
 			CanvasWidgetHelper.prepareContextForBackground(context, layout);
-			this.renderBgImage(stickerImage, layout, context);
+			context.drawImage(stickerImage, layout.x, layout.y, layout.width, layout.height);
+			context.restore();
 
+			context.save();
 			CanvasWidgetHelper.prepareContextForText(context, layout);
 			context.fillText(widget.text, layout.x, layout.y + layout.padding, layout.width - 2 * layout.padding);
 			context.restore();
 		};
 
 		stickerImage.src = "assets/sticker.png";
-	}
-
-	private renderBgImage(image: HTMLImageElement, layout: ILayoutParams, context: CanvasRenderingContext2D): void {
-		var translateX = -layout.width / 2;
-		var translateY = -layout.height / 2;
-
-		context.save();
-		context.translate(translateX, translateY);
-		context.drawImage(image, layout.x, layout.y, layout.width, layout.height);
-		context.restore();
 	}
 }
