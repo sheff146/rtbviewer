@@ -47,7 +47,7 @@
     <TypeScriptCompile Include="TypeScript\Rendering\iSize.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\iViewPortParams.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\layoutHelper.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\layoutParams.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\iLayoutParams.ts" />
     <TypeScriptCompile Include="TypeScript\stringFormatter.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\renderHelper.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\renderer.ts" />
