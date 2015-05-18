@@ -5,14 +5,14 @@
 	private _rendererCollection: IDictionary<Rendering.IRenderer>;
 
 	private _viewRect: IRect;
-	private _renderHelper: Rendering.RenderHelper;
+	private _renderHelper: Helpers.RenderHelper;
 
 	constructor(board: IBoard, viewport: HTMLElement) {
 		this._board = board;
 		this._viewport = viewport;
 		this._rendererCollection = {};
 
-		this._renderHelper = new Rendering.RenderHelper();
+		this._renderHelper = new Helpers.RenderHelper();
 
 		var boardRect = {
 			a: {

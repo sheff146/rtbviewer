@@ -1,12 +1,6 @@
 ﻿module DomWidgets {
-	var renderHelper = new Rendering.RenderHelper();
-	var layoutHelper = new Rendering.LayoutHelper(renderHelper);
-
-	export var widgetRenderers: IDomWidgetRenderer[] = [
-		new ImageDomRenderer(),
-		new StickerDomRenderer(),
-		new TextDomRenderer()
-	];
+	var renderHelper = new Helpers.RenderHelper();
+	var layoutHelper = new Helpers.LayoutHelper(renderHelper);
 
 	export interface IDomWidgetRenderer {
 		getWidgetType(): number;
@@ -154,4 +148,10 @@
 			return StringFormatter.format(transformBlank, angle);
 		}
 	}
+
+	export var widgetRenderers: IDomWidgetRenderer[] = [
+		new ImageDomRenderer(),
+		new StickerDomRenderer(),
+		new TextDomRenderer()
+	];
 }

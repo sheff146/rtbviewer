@@ -27,15 +27,17 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="TypeScript\Rendering\helpers.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\rendering.ts" />
     <TypeScriptCompile Include="TypeScript\board.ts" />
     <TypeScriptCompile Include="TypeScript\boardLoader.ts" />
     <TypeScriptCompile Include="TypeScript\iDictionary.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\canvasWidgets\canvasWidgets.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\rendering.ts" />
-    <TypeScriptCompile Include="TypeScript\init.ts" />
     <TypeScriptCompile Include="TypeScript\Rendering\domWidgets\domWidgets.ts" />
     <TypeScriptCompile Include="TypeScript\stringFormatter.ts" />
     <TypeScriptCompile Include="TypeScript\viewer.ts" />
+    <TypeScriptCompile Include="TypeScript\init.ts" />
+    <TypeScriptCompile Include="_references.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sheff146.pubxml" />

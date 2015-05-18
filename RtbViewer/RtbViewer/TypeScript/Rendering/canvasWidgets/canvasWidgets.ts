@@ -1,12 +1,6 @@
 ﻿module CanvasWidgets {
-	var renderHelper = new Rendering.RenderHelper();
-	var layoutHelper = new Rendering.LayoutHelper(renderHelper);
-
-	export var widgetRenderers: ICanvasWidgetRenderer[] = [
-		new ImageCanvasRenderer(),
-		new StickerCanvasRenderer(),
-		new TextCanvasRenderer()
-	];
+	var renderHelper = new Helpers.RenderHelper();
+	var layoutHelper = new Helpers.LayoutHelper(renderHelper);
 
 	export interface ICanvasWidgetRenderer {
 		getWidgetType(): number;
@@ -217,4 +211,10 @@
 			return { deltaX: xc1 - xc, deltaY: yc1 - yc };
 		}
 	}
+
+	export var widgetRenderers: ICanvasWidgetRenderer[] = [
+		new ImageCanvasRenderer(),
+		new StickerCanvasRenderer(),
+		new TextCanvasRenderer()
+	];
 }
