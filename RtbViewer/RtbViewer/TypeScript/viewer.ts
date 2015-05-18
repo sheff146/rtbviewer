@@ -5,11 +5,14 @@
 	private _rendererCollection: IDictionary<Rendering.IRenderer>;
 
 	private _viewRect: IRect;
+	private _renderHelper: Rendering.RenderHelper;
 
 	constructor(board: IBoard, viewport: HTMLElement) {
 		this._board = board;
 		this._viewport = viewport;
 		this._rendererCollection = {};
+
+		this._renderHelper = new Rendering.RenderHelper();
 
 		var boardRect = {
 			a: {
@@ -23,7 +26,7 @@
 		};
 
 		var viewportSize: Rendering.ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
-		this._viewRect = Rendering.RenderHelper.countViewportRect(boardRect, viewportSize);
+		this._viewRect = this._renderHelper.countViewportRect(boardRect, viewportSize);
 
 		Rendering.renderers.forEach((renderer: Rendering.IRenderer) => {
 			this.addRenderer(renderer);
@@ -54,7 +57,7 @@
 		var viewportSize: Rendering.ISize = { width: this._viewport.clientWidth, height: this._viewport.clientHeight };
 		var viewportParams = { size: viewportSize, rect: this._viewRect };
 
-		this._viewRect = Rendering.RenderHelper.countNewZoomRect(scaleModifier, zoomPoint, viewportParams);
+		this._viewRect = this._renderHelper.countNewZoomRect(scaleModifier, zoomPoint, viewportParams);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 
@@ -63,7 +66,7 @@
 		var viewportParams = { size: viewportSize, rect: this._viewRect };
 		var delta = { deltaX: deltaX, deltaY: deltaY };
 
-		this._viewRect = Rendering.RenderHelper.countNewDragRect(delta, viewportParams);
+		this._viewRect = this._renderHelper.countNewDragRect(delta, viewportParams);
 		this._renderer.draw(this._board, this._viewport, this._viewRect);
 	}
 }

@@ -1,6 +1,6 @@
 ﻿module DomWidgets {
-	import LayoutHelper = Rendering.LayoutHelper;
-	import RenderHelper = Rendering.RenderHelper;
+	var renderHelper = new Rendering.RenderHelper();
+	var layoutHelper = new Rendering.LayoutHelper(renderHelper);
 
 	export var widgetRenderers: IDomWidgetRenderer[] = [
 		new ImageDomRenderer(),
@@ -42,7 +42,7 @@
 
 		private countImageLayout(image: HTMLImageElement, widget: IWidget, viewportParams: Rendering.IViewPortParams): Rendering.ILayoutParams {
 			var realSize = { width: image.naturalWidth, height: image.naturalHeight };
-			return LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
+			return layoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 		}
 	}
 
@@ -66,8 +66,8 @@
 				sticker.style.backgroundSize = "100%";
 			}
 
-			var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
-			var k = RenderHelper.countMappingScale(viewportParams);
+			var layout = layoutHelper.countWidgetLayout(widget, viewportParams, realSize);
+			var k = renderHelper.countMappingScale(viewportParams);
 			layout.textAlign = "center";
 			layout.fontSize = 40 / k.ky;
 			layout.padding = 15 / k.ky;
@@ -87,7 +87,7 @@
 
 		public render(widget: IWidget, layoutBoard: HTMLElement, viewportParams: Rendering.IViewPortParams): void {
 			var realSize = { width: widget.width, height: 0 };
-			var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
+			var layout = layoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 
 			var element = document.getElementById(widget.idStr);
 			var elementExists = element ? true : false;

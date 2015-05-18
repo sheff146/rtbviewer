@@ -39,11 +39,17 @@
 	}
 
 	export class LayoutHelper {
-		public static countWidgetLayout(widget: IWidget, viewportParams: IViewPortParams, widgetRealSize: ISize = { width: 0, height: 0 }): ILayoutParams {
+		private _renderHelper: RenderHelper;
+
+		constructor(renderHelper: RenderHelper) {
+			this._renderHelper = renderHelper;
+		}
+
+		public countWidgetLayout(widget: IWidget, viewportParams: IViewPortParams, widgetRealSize: ISize = { width: 0, height: 0 }): ILayoutParams {
 			var layout: ILayoutParams = {};
 			var widgetRealCoords = { x: widget.x, y: widget.y };
-			var widgetScreenCoords = RenderHelper.countScreenCoords(widgetRealCoords, viewportParams);
-			var widgetScreenSize = RenderHelper.countScreenSize(widgetRealSize, viewportParams, widget.scale);
+			var widgetScreenCoords = this._renderHelper.countScreenCoords(widgetRealCoords, viewportParams);
+			var widgetScreenSize = this._renderHelper.countScreenSize(widgetRealSize, viewportParams, widget.scale);
 
 			layout.width = widgetScreenSize.width;
 			layout.height = widgetScreenSize.height;
@@ -56,22 +62,22 @@
 			return layout;
 		}
 
-		private static setUpTextParams(widget: IWidget, layout: ILayoutParams, viewportParams: IViewPortParams) {
-			var k = RenderHelper.countMappingScale(viewportParams);
+		private setUpTextParams(widget: IWidget, layout: ILayoutParams, viewportParams: IViewPortParams) {
+			var k = this._renderHelper.countMappingScale(viewportParams);
 
 			layout.fontSize = 90 / k.ky;
 			layout.lineHeightCoeff = 1.2;
 
 			var ta = widget.style && widget.style.ta ? widget.style.ta : "";
-			layout.textAlign = RenderHelper.textAlignmentFromString(ta);
+			layout.textAlign = this._renderHelper.textAlignmentFromString(ta);
 
 			var bc = widget.style && widget.style.bc >= 0 ? widget.style.bc : -1;
-			layout.backgroundColor = RenderHelper.hexColorFromNumber(bc);
+			layout.backgroundColor = this._renderHelper.hexColorFromNumber(bc);
 		}
 	}
 
 	export class RenderHelper {
-		public static countViewportRect(startPosotion: IRect, viewportSize: ISize): IRect {
+		public countViewportRect(startPosotion: IRect, viewportSize: ISize): IRect {
 			var rMin = startPosotion.a;
 			var rMax = startPosotion.b;
 			var vpWidth = viewportSize.width;
@@ -86,7 +92,7 @@
 			return { a: { x: xMinBoard, y: rMin.y }, b: { x: xMaxBoard, y: rMax.y } }
 		}
 
-		public static countMappingScale(viewportParams: IViewPortParams): { kx: number; ky: number } {
+		public countMappingScale(viewportParams: IViewPortParams): { kx: number; ky: number } {
 			var viewportRect = viewportParams.rect;
 			var viewportSize = viewportParams.size;
 			var vpMin = viewportRect.a;
@@ -100,10 +106,10 @@
 			return { kx: kx, ky: ky };
 		}
 
-		public static countScreenCoords(realCoords: IPoint, viewportParams: IViewPortParams): IPoint {
+		public countScreenCoords(realCoords: IPoint, viewportParams: IViewPortParams): IPoint {
 			var viewportRect = viewportParams.rect;
 			var vpMin = viewportRect.a;
-			var k = RenderHelper.countMappingScale(viewportParams);
+			var k = this.countMappingScale(viewportParams);
 
 			return {
 				x: (realCoords.x - vpMin.x) / k.kx,
@@ -111,8 +117,8 @@
 			};
 		}
 
-		public static countScreenSize(realSize: ISize, viewportParams: IViewPortParams, scale: number): ISize {
-			var k = RenderHelper.countMappingScale(viewportParams);
+		public countScreenSize(realSize: ISize, viewportParams: IViewPortParams, scale: number): ISize {
+			var k = this.countMappingScale(viewportParams);
 
 			return {
 				width: realSize.width / k.kx * scale,
@@ -120,17 +126,17 @@
 			};
 		}
 
-		public static countNewDragRect(deltaScreen: IDeltaPoint, viewportParams: IViewPortParams): IRect {
+		public countNewDragRect(deltaScreen: IDeltaPoint, viewportParams: IViewPortParams): IRect {
 			var viewportRect = viewportParams.rect;
-			var realDelta = RenderHelper.countRealDelta(deltaScreen, viewportParams);
+			var realDelta = this.countRealDelta(deltaScreen, viewportParams);
 			return {
 				a: { x: viewportRect.a.x - realDelta.deltaX, y: viewportRect.a.y - realDelta.deltaY },
 				b: { x: viewportRect.b.x - realDelta.deltaX, y: viewportRect.b.y - realDelta.deltaY }
 			};
 		}
 
-		private static countRealDelta(deltaScreen: IDeltaPoint, viewportParams: IViewPortParams): IDeltaPoint {
-			var k = RenderHelper.countMappingScale(viewportParams);
+		private countRealDelta(deltaScreen: IDeltaPoint, viewportParams: IViewPortParams): IDeltaPoint {
+			var k = this.countMappingScale(viewportParams);
 
 			return {
 				deltaX: deltaScreen.deltaX * k.kx,
@@ -138,9 +144,9 @@
 			};
 		}
 
-		public static countNewZoomRect(scaleModifier: number, zoomScreenPoint: IPoint, viewportParams: IViewPortParams): IRect {
+		public countNewZoomRect(scaleModifier: number, zoomScreenPoint: IPoint, viewportParams: IViewPortParams): IRect {
 			var viewportRect = viewportParams.rect;
-			var zoomRealPoint = RenderHelper.countRealCoordinates(zoomScreenPoint, viewportParams);
+			var zoomRealPoint = this.countRealCoordinates(zoomScreenPoint, viewportParams);
 			var deltaScale = 1 + Math.abs(scaleModifier);
 			if (scaleModifier < 0) {
 				deltaScale = 1 / deltaScale;
@@ -164,10 +170,10 @@
 			};
 		}
 
-		private static countRealCoordinates(screenPoint: IPoint, viewportParams: IViewPortParams): IPoint {
+		private countRealCoordinates(screenPoint: IPoint, viewportParams: IViewPortParams): IPoint {
 			var viewportRect = viewportParams.rect;
 			var vpMin = viewportRect.a;
-			var k = RenderHelper.countMappingScale(viewportParams);
+			var k = this.countMappingScale(viewportParams);
 
 			return {
 				x: vpMin.x + screenPoint.x * k.kx,
@@ -175,13 +181,13 @@
 			};
 		}
 
-		public static hexColorFromNumber(bc: number): string {
+		public hexColorFromNumber(bc: number): string {
 			return bc < 0
 				? "transparent"
 				: "#" + bc.toString(16);
 		}
 
-		public static textAlignmentFromString(ta: string): string {
+		public textAlignmentFromString(ta: string): string {
 			switch (ta) {
 				case "c":
 					return "center";

@@ -1,6 +1,6 @@
 ﻿module CanvasWidgets {
-	import LayoutHelper = Rendering.LayoutHelper;
-	import RenderHelper = Rendering.RenderHelper;
+	var renderHelper = new Rendering.RenderHelper();
+	var layoutHelper = new Rendering.LayoutHelper(renderHelper);
 
 	export var widgetRenderers: ICanvasWidgetRenderer[] = [
 		new ImageCanvasRenderer(),
@@ -23,7 +23,7 @@
 
 			image.onload = () => {
 				var realSize = { width: image.naturalWidth, height: image.naturalHeight };
-				var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
+				var layout = layoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 
 				context.save();
 				CanvasWidgetHelper.prepareContextForBackground(context, layout);
@@ -43,11 +43,11 @@
 		}
 
 		public render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: Rendering.IViewPortParams): void {
-			var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, StickerCanvasRenderer.stickerSize);
+			var layout = layoutHelper.countWidgetLayout(widget, viewportParams, StickerCanvasRenderer.stickerSize);
 			var stickerImage = new Image();
 
 			stickerImage.onload = () => {
-				var k = RenderHelper.countMappingScale(viewportParams);
+				var k = renderHelper.countMappingScale(viewportParams);
 				layout.padding = 15 / k.ky;
 				layout.fontSize = 40 / k.ky;
 				layout.textAlign = "center";
@@ -74,7 +74,7 @@
 
 		public render(widget: IWidget, context: CanvasRenderingContext2D, viewportParams: Rendering.IViewPortParams): void {
 			var realSize = { width: widget.width, height: 0 };
-			var layout = LayoutHelper.countWidgetLayout(widget, viewportParams, realSize);
+			var layout = layoutHelper.countWidgetLayout(widget, viewportParams, realSize);
 			var cleanText = this.parseInnerText(widget);
 
 			//чтобы рассчитать ширину текста, надо подготовить canvas, но рендерить его надо после фона,
