@@ -6,8 +6,6 @@
 
 		loader.loadBoard("74254402", (board: IBoard) => {
 			viewer = new Viewer(board, viewport);
-			viewer.addRenderer(new DomRenderer());
-			viewer.addRenderer(new CanvasRenderer());
 			viewer.render("dom");
 		});
 

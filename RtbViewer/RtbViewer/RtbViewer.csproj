@@ -30,27 +30,11 @@
     <TypeScriptCompile Include="TypeScript\board.ts" />
     <TypeScriptCompile Include="TypeScript\boardLoader.ts" />
     <TypeScriptCompile Include="TypeScript\iDictionary.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\canvas\canvasRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\canvas\canvasWidgetHelper.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\canvas\iCanvasWidgetRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\canvas\imageCanvasRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\canvas\stickerCanvasRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\canvas\textCanvasRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\domWidgetHelper.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\domRenderer.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\canvasWidgets\canvasWidgets.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\rendering.ts" />
     <TypeScriptCompile Include="TypeScript\init.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\iDomWidgetRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\imageDomRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\stickerDomRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\dom\textDomRenderer.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\iDeltaPoint.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\iSize.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\iViewPortParams.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\layoutHelper.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\iLayoutParams.ts" />
+    <TypeScriptCompile Include="TypeScript\Rendering\domWidgets\domWidgets.ts" />
     <TypeScriptCompile Include="TypeScript\stringFormatter.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\renderHelper.ts" />
-    <TypeScriptCompile Include="TypeScript\Rendering\renderer.ts" />
     <TypeScriptCompile Include="TypeScript\viewer.ts" />
   </ItemGroup>
   <ItemGroup>
