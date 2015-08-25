@@ -2,7 +2,8 @@
 	public loadBoard(boardId: string, callback: (board: IBoard) => any): void {
 		// ReSharper disable once InconsistentNaming
 		var request = new XMLHttpRequest();
-		request.open("GET", "//api.realtimeboard.com/objects/" + boardId, true);
+		var url = `/Content/${boardId}.json`;
+		request.open("GET", url, true);
 		request.onreadystatechange = () => {
 			if (request.readyState === XMLHttpRequest.DONE) {
 				if (request.status === 200) {

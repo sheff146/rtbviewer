@@ -1,0 +1,530 @@
+{
+  "comments" : [ ],
+  "links" : [ ],
+  "startPosition" : {
+    "a" : {
+      "x" : -2486.0,
+      "y" : -2089.0
+    },
+    "b" : {
+      "x" : 12589.0,
+      "y" : 7081.0
+    }
+  },
+  "presentation" : null,
+  "widgets" : [ {
+    "y" : 678.3087186068485,
+    "x" : 539.2369555709,
+    "text" : "Задача 5",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254542",
+    "id" : 74254542
+  }, {
+    "y" : 678.3087186068485,
+    "x" : 296.72203555155,
+    "text" : "Задача 4",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254541",
+    "id" : 74254541
+  }, {
+    "y" : 1021.5664894424112,
+    "x" : -163.07856944845008,
+    "text" : "Задача 2",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254544",
+    "id" : 74254544
+  }, {
+    "y" : 1021.5664894424112,
+    "x" : -372.44486944845005,
+    "text" : "Задача 1",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254543",
+    "id" : 74254543
+  }, {
+    "y" : 678.3087186068485,
+    "x" : -372.44486944845005,
+    "text" : "Задача 1",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254538",
+    "id" : 74254538
+  }, {
+    "y" : -66.66506172527477,
+    "x" : -372.4448694484503,
+    "text" : "Задача 1",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254410",
+    "id" : 74254410
+  }, {
+    "y" : 471.5349342207736,
+    "x" : 539.2369555708999,
+    "text" : "Задача 5",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254537",
+    "id" : 74254537
+  }, {
+    "y" : 678.3087186068485,
+    "x" : 64.00334055154994,
+    "text" : "Задача 3",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254540",
+    "id" : 74254540
+  }, {
+    "y" : 678.3087186068485,
+    "x" : -163.07856944845005,
+    "text" : "Задача 2",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254539",
+    "id" : 74254539
+  }, {
+    "y" : 471.5349342207735,
+    "x" : -163.07856944845017,
+    "text" : "Задача 2",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254534",
+    "id" : 74254534
+  }, {
+    "y" : 471.5349342207735,
+    "x" : -372.44486944845016,
+    "text" : "Задача 1",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254533",
+    "id" : 74254533
+  }, {
+    "y" : 471.5349342207736,
+    "x" : 296.7220355515499,
+    "text" : "Задача 4",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254536",
+    "id" : 74254536
+  }, {
+    "y" : 471.5349342207736,
+    "x" : 64.00334055154983,
+    "text" : "Задача 3",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254535",
+    "id" : 74254535
+  }, {
+    "y" : 140.10872266080014,
+    "x" : 64.00334055154988,
+    "text" : "Задача 3",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254530",
+    "id" : 74254530
+  }, {
+    "y" : 140.10872266080014,
+    "x" : -163.07856944845014,
+    "text" : "Задача 2",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254529",
+    "id" : 74254529
+  }, {
+    "y" : 140.10872266080014,
+    "x" : 539.2369555709,
+    "text" : "Задача 5",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254532",
+    "id" : 74254532
+  }, {
+    "y" : 140.10872266080014,
+    "x" : 296.72203555154994,
+    "text" : "Задача 4",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254531",
+    "id" : 74254531
+  }, {
+    "width" : 52.7,
+    "y" : -117.30227078647636,
+    "x" : -732.5568618158235,
+    "text" : "<P><F C=\"#000000\">Дизайн:</FONT></P>",
+    "scale" : 6.086279093879835,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : {
+      "ta" : "l",
+      "bc" : -1
+    },
+    "idStr" : "74254554",
+    "id" : 74254554
+  }, {
+    "y" : 1228.3402738284863,
+    "x" : 64.00334055155008,
+    "text" : "Задача 3",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254550",
+    "id" : 74254550
+  }, {
+    "y" : 1228.3402738284863,
+    "x" : -163.07856944844997,
+    "text" : "Задача 2",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254549",
+    "id" : 74254549
+  }, {
+    "y" : 1228.3402738284863,
+    "x" : 539.2369555709001,
+    "text" : "Задача 5",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254552",
+    "id" : 74254552
+  }, {
+    "y" : 1228.3402738284863,
+    "x" : 296.7220355515501,
+    "text" : "Задача 4",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254551",
+    "id" : 74254551
+  }, {
+    "y" : 1021.5664894424115,
+    "x" : 296.72203555155,
+    "text" : "Задача 4",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254546",
+    "id" : 74254546
+  }, {
+    "y" : 1021.5664894424115,
+    "x" : 64.00334055154997,
+    "text" : "Задача 3",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254545",
+    "id" : 74254545
+  }, {
+    "y" : 1228.3402738284863,
+    "x" : -372.44486944844994,
+    "text" : "Задача 1",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254548",
+    "id" : 74254548
+  }, {
+    "y" : 1021.5664894424115,
+    "x" : 539.2369555709,
+    "text" : "Задача 5",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254547",
+    "id" : 74254547
+  }, {
+    "type" : 1,
+    "y" : 6144.407686055425,
+    "x" : 1557.1700761907018,
+    "url" : "https://d38pxtc7jddmir.cloudfront.net/5252525252/125336/75/325/1/image.png",
+    "scale" : 8.83928093274389,
+    "angle" : 0.0,
+    "idStr" : "74254630",
+    "id" : 74254630
+  }, {
+    "type" : 1,
+    "y" : 4390.190503915048,
+    "x" : 8927.792252216861,
+    "url" : "https://d38pxtc7jddmir.cloudfront.net/5252525252/125305/137/257/1/image.png",
+    "scale" : 1.617577432827365,
+    "angle" : -90.0,
+    "idStr" : "74254625",
+    "id" : 74254625
+  }, {
+    "type" : 1,
+    "y" : 6160.850599450127,
+    "x" : 3807.0550627628736,
+    "url" : "https://d38pxtc7jddmir.cloudfront.net/5252525252/125335/277/263/1/image.png",
+    "scale" : 7.482071452141237,
+    "angle" : 180.0,
+    "idStr" : "74254628",
+    "id" : 74254628
+  }, {
+    "y" : -66.66506172527477,
+    "x" : 539.2369555708999,
+    "text" : "Задача 5",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254526",
+    "id" : 74254526
+  }, {
+    "y" : 140.10872266080014,
+    "x" : -372.44486944845016,
+    "text" : "Задача 1",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254528",
+    "id" : 74254528
+  }, {
+    "y" : -66.66506172527477,
+    "x" : -163.07856944845025,
+    "text" : "Задача 2",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254522",
+    "id" : 74254522
+  }, {
+    "y" : -66.66506172527477,
+    "x" : 296.7220355515498,
+    "text" : "Задача 4",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254524",
+    "id" : 74254524
+  }, {
+    "y" : -66.66506172527477,
+    "x" : 64.00334055154977,
+    "text" : "Задача 3",
+    "scale" : 1.0,
+    "type" : 5,
+    "style" : { },
+    "idStr" : "74254523",
+    "id" : 74254523
+  }, {
+    "width" : 45.3,
+    "y" : -6.736490296703295,
+    "x" : -1458.2012545956643,
+    "text" : "<P><F C=\"#000000\">Таски:</FONT></P>",
+    "scale" : 11.428571428571429,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : {
+      "bc" : 16554060
+    },
+    "idStr" : "74254643",
+    "id" : 74254643
+  }, {
+    "width" : 79.5,
+    "y" : 3715.643352423037,
+    "x" : 288.97757000000036,
+    "text" : "<P><F C=\"#000000\">Референсы:</FONT></P>",
+    "scale" : 11.428571428571429,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : {
+      "ta" : "l",
+      "bc" : 16554060
+    },
+    "idStr" : "74254604",
+    "id" : 74254604
+  }, {
+    "width" : 93.0,
+    "y" : -1529.694466497313,
+    "x" : 3969.65227007228,
+    "text" : "<P><F C=\"#FFFFFF\">Список задач:<F C=\"#000000\"></FONT></FONT></P>",
+    "scale" : 20.313789535646745,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : {
+      "bc" : 2248051
+    },
+    "idStr" : "74254598",
+    "id" : 74254598
+  }, {
+    "width" : 300.0,
+    "y" : 1952.879057272401,
+    "x" : 11425.58397657947,
+    "text" : "<P><F C=\"#000000\">Описание задачи 5:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254597",
+    "id" : 74254597
+  }, {
+    "width" : 300.0,
+    "y" : 1952.879057272401,
+    "x" : 4646.494782120864,
+    "text" : "<P><F C=\"#000000\">Описание задачи 2:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254594",
+    "id" : 74254594
+  }, {
+    "width" : 300.0,
+    "y" : 1952.879057272401,
+    "x" : 2307.4450813522644,
+    "text" : "<P><F C=\"#000000\">Описание задачи 1:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254593",
+    "id" : 74254593
+  }, {
+    "width" : 300.0,
+    "y" : 1952.879057272401,
+    "x" : 9230.004759318457,
+    "text" : "<P><F C=\"#000000\">Описание задачи 4:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254596",
+    "id" : 74254596
+  }, {
+    "width" : 300.0,
+    "y" : 1952.879057272401,
+    "x" : 6962.270356513656,
+    "text" : "<P><F C=\"#000000\">Описание задачи 3:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254595",
+    "id" : 74254595
+  }, {
+    "type" : 1,
+    "y" : 4405.160085698776,
+    "x" : 6380.062824288991,
+    "url" : "https://d38pxtc7jddmir.cloudfront.net/5252525252/125306/345/123/1/image.jpg",
+    "scale" : 4.247800734497211,
+    "angle" : 0.0,
+    "idStr" : "74254624",
+    "id" : 74254624
+  }, {
+    "type" : 1,
+    "y" : 4432.450460583055,
+    "x" : 1669.3182225464548,
+    "url" : "https://d38pxtc7jddmir.cloudfront.net/5252525252/125307/367/137/1/image.png",
+    "scale" : 1.538732235048052,
+    "angle" : 0.0,
+    "idStr" : "74254617",
+    "id" : 74254617
+  }, {
+    "type" : 1,
+    "y" : 4439.524681700444,
+    "x" : 3733.5529180388894,
+    "url" : "https://d38pxtc7jddmir.cloudfront.net/5252525252/125355/133/132/1/image.png",
+    "scale" : 3.0484501042669976,
+    "angle" : 0.0,
+    "idStr" : "74254620",
+    "id" : 74254620
+  }, {
+    "width" : 300.0,
+    "y" : 291.4845694490459,
+    "x" : 2307.445081352265,
+    "text" : "<P><F C=\"#000000\">Описание задачи 1:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : {
+      "bc" : -1
+    },
+    "idStr" : "74254570",
+    "id" : 74254570
+  }, {
+    "width" : 53.0,
+    "y" : 420.8977251595718,
+    "x" : -762.6094538518868,
+    "text" : "<P><F C=\"#000000\">Сервер:</FONT></P>",
+    "scale" : 6.086279093879835,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254561",
+    "id" : 74254561
+  }, {
+    "width" : 53.0,
+    "y" : 970.9292803812095,
+    "x" : -762.6094538518868,
+    "text" : "<P><F C=\"#000000\">Клиент:</FONT></P>",
+    "scale" : 6.086279093879835,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254563",
+    "id" : 74254563
+  }, {
+    "width" : 300.0,
+    "y" : 291.4845694490459,
+    "x" : 9230.004759318459,
+    "text" : "<P><F C=\"#000000\">Описание задачи 4:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254590",
+    "id" : 74254590
+  }, {
+    "width" : 300.0,
+    "y" : 291.4845694490459,
+    "x" : 11425.583976579472,
+    "text" : "<P><F C=\"#000000\">Описание задачи 5:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254591",
+    "id" : 74254591
+  }, {
+    "width" : 300.0,
+    "y" : 291.4845694490459,
+    "x" : 6962.270356513656,
+    "text" : "<P><F C=\"#000000\">Описание задачи 3:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254587",
+    "id" : 74254587
+  }, {
+    "width" : 300.0,
+    "y" : 291.4845694490459,
+    "x" : 4646.494782120864,
+    "text" : "<P><F C=\"#000000\">Описание задачи 2:</FONT></P><P><F C=\"#000000\"></FONT></P><P><F C=\"#000000\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</FONT></P>",
+    "scale" : 6.086279093879834,
+    "angle" : 0.0,
+    "type" : 4,
+    "style" : { },
+    "idStr" : "74254584",
+    "id" : 74254584
+  } ],
+  "idStr" : "74254402",
+  "id" : 74254402
+}
