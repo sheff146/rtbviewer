@@ -1,10 +1,6 @@
-rtbviewer
-=========
-# Viewer for RealtimeBoard.
+# Viewer for RealtimeBoard
 
-Test task for Developer position. 
-
-Published: http://sheff146.azurewebsites.net/.
+Test task for Developer position. Published: http://sheff146.azurewebsites.net/
 
 Problem statement:
 * Create viewer for RealtimeBoard;
@@ -22,4 +18,4 @@ Problem statement:
 	* Board navigation;
 	* Board zoom;
 * Viewer should be introduced as a complete product and should be accessed by a public link;
-* Board data can be received in a json format by the link: http://api.realtimeboard.com/objects/74254402;
+* Board data can be received in a json format by the link: http://api.realtimeboard.com/objects/74254402.
