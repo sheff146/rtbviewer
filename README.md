@@ -1,6 +1,6 @@
 # Viewer for RealtimeBoard
 
-Test task for Developer position. Published: http://sheff146.azurewebsites.net/
+Published: http://sheff146.azurewebsites.net/
 
 Problem statement:
 * Create viewer for RealtimeBoard;
